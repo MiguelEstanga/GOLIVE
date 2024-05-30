@@ -1,3 +1,10 @@
+*{
+  margin: 0;
+}
+:root{
+  --color-primary: #FCD535;
+  --fon-family: Montserrat;
+}
 .App {
   text-align: center;
 }
@@ -35,4 +42,222 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.footer-login-mastery-leyenda-container{
+  height: auto;
+  position: absolute;
+  width: 100%;
+  left: 0;
+}
+
+.footer-login-mastery-leyenda-container img{
+    margin-top: 22px;
+   
+    bottom: 0;
+    width: 300px;
+
+}
+
+.container-logo-main{
+ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-logo-main img{
+    width: 80px;
+    height: auto;
+}
+
+.required{
+  color:   #c0392b ;
+  position: relative;
+  top: -13px;
+  font-family: var(--fon-family);
+  text-align: left;
+  padding-left: 20px;
+  font-size: 12px;
+  
+ 
+}
+
+.recordarme{
+  font-family: var(--fon-family);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color:  #909497 ;
+}
+
+.container-titulo-welcome{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.container-welcome{
+  padding: 0 0 0  70px;
+  width: 90%;
+
+}
+
+.scuela-titulo-container-logo{
+  font-family: var(--fon-family);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 4px;
+  margin-left: 10px;
+  word-wrap: break-word;
+}
+
+/* estilos de del menu */
+.menu-logo{
+  width: 118px;
+  height: 126px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("./school/bg-btns-carrousel-stk.png");
+  background-position: center;
+  background-size: cover;
+  border-radius: 0 0 20px 20px;
+  position: relative;
+  top: -10px;
+}
+
+.menu-options{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--fon-family)  ;
+  font-size: 18px;
+
+  height: 100px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.switch {
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  background-color: #ccc;
+  border-radius: 20px;
+  position: relative;
+}
+
+.switch-checkbox {
+  display: none;
+}
+
+.switch-label {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.switch-label::before {
+  content: "";
+  display: block;
+  width: 50%;
+  height: 100%;
+  background-color:  #717d7e ;
+  border-radius: 20px;
+  transition: transform 0.3s;
+}
+
+.switch.checked {
+  background-color: #4CAF50;
+}
+
+.switch.checked .switch-label {
+  background-color: #4CAF50;
+}
+
+.switch.checked .switch-label::before {
+  transform: translateX(100%);
+}
+
+/*select*/
+
+.select{
+ height: 100%;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+.select select {
+  
+
+  width: 240px;
+  height: 40px;
+  border: none;
+  color: white;
+  border-radius: 3px;
+  text-align: center;
+  background-image: linear-gradient(to right,  #17202a ,  #17202a );
+  
+}
+select:focus {
+  outline: 2px solid #007bff; /* Estilo, grosor y color del borde de enfoque */
+}
+
+.select select option {
+  width: 240px;
+  height: 40px;
+  border: none;
+  color: white;
+  border-radius: 3px;
+  text-align: center;
+  background-image: linear-gradient(to right,  #17202a ,  #17202a );
+}
+
+.img-text{
+  width: 400px;
+  height: 40px;
+  background-position: center;
+  background-size: cover;
+}
+
+/* EducatorsAndSchedules */
+
+.EducatorsAndSchedules{
+  background-image: url("https://d22yb2tbj8zopv.cloudfront.net/src/school/foreing_fl.png");
+  background-position: center;
+  background-size: cover;
+  height: auto;
+ 
+  width: 100vw;
+}
+
+.title-educators{
+  font-family: Arial;
+  font-size: 20px;
+  font-weight: 900;
+  color: white;
+  margin-top: 30px;
+}
+
+.container-educators-top{
+
+  width: 80%;
+  
+  margin: 10px auto;
+}
+
+.selector-session-foreing{
+
+  margin: auto;
+  width: 80%;
+  display: grid;
+  grid-template-columns: 20% 75%;
+  gap: 10px;
 }

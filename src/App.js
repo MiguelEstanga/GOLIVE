@@ -1,24 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Login from "./view/Login/Login";
+import EducatorsAndSchedules from "./view/educatorsAndSchedules/EducatorsAndSchedules";
+import Welcome2d from "./view/welcome2d/Welcome2d";
+import OnlivePage from "./view/onLivePage/OnlivePage";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/Welcome2d" element={<Welcome2d />} />
+        <Route path="/educators-and-schedules" element={<EducatorsAndSchedules />} />
+        <Route path="/on-live-page" element={<OnlivePage />} />
+
+      </Routes>
+  </BrowserRouter>
   );
 }
 
