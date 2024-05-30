@@ -7,7 +7,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-import './styles.css';
+import './swipercomponents.css';
 import { VIDEOS } from '../view/onLivePage/Styled';
 import { imagenes } from '../helper/test';
 

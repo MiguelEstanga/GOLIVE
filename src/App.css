@@ -249,8 +249,12 @@ select:focus {
 .container-educators-top{
 
   width: 80%;
-  
+  border: solid 1px white;
   margin: 10px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .selector-session-foreing{
