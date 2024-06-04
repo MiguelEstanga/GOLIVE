@@ -3,10 +3,12 @@ import Login from "./view/Login/Login";
 import EducatorsAndSchedules from "./view/educatorsAndSchedules/EducatorsAndSchedules";
 import Welcome2d from "./view/welcome2d/Welcome2d";
 import OnlivePage from "./view/onLivePage/OnlivePage";
+import Cronograma from './view/cronograma/Cronograma';
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+      <Route path="/cronograma" element={<Cronograma />} />
         <Route path="/" element={<Login />} />
         <Route path="/Welcome2d" element={<Welcome2d />} />
         <Route path="/educators-and-schedules" element={<EducatorsAndSchedules />} />

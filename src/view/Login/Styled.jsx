@@ -34,7 +34,7 @@ export const LoginInput = styled.input`
   border-radius: 100px;
   width: 350px;
   border:solid 1px black;
-  font-family: Montserrat ;
+
   margin:20px 0;
   fonst-size: 50px;
 `
@@ -72,7 +72,7 @@ export const ButtonCustom = styled.button`
   font-size: 14px;
   font-weight: 100;
   border:none;
-  font-family: Arial ;
+
   margin:20px 0;
   fonst-size: 50px;
   cursor: pointer;

@@ -3,11 +3,18 @@ import ReactDOM from 'react-dom/client';
 import './App.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ShouldeProvider } from './context/ShouldeContext';
+import LanguageProvider from './context/languageContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <LanguageProvider>
+      <ShouldeProvider>
+        <App />
+      </ShouldeProvider>
+    </LanguageProvider>
+    
   </React.StrictMode>
 );
 

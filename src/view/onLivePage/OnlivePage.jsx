@@ -1,5 +1,5 @@
 import Menu from "../educatorsAndSchedules/components/Menu";
-import { Masvisto, StyledOnlivePage } from "./Styled";
+import { Masvisto, StyledOnlivePage, Upload } from "./Styled";
 import ReactPlayer from 'react-player'
 import {imagenes , foring_exchange} from "../../helper/test";
 import Swiper from "swiper/react";
@@ -8,6 +8,8 @@ import Videos from "./Videos";
 import Footer2d from '../../components/Footer2d'
 import AvatarGlobal  from "../../components/Avatar";
 import Seguir from "../../components/Seguir";
+import { MdFileUpload } from "react-icons/md";
+import Streming from "./Streming";
 export default function OnlivePage() {
     return (
         <StyledOnlivePage
@@ -18,12 +20,14 @@ export default function OnlivePage() {
             <div  className="container">
                 <div className="video" >
                     <div className="inlive">En linea</div>
-                    <ReactPlayer
-                        url="https://lifeontop.s3.amazonaws.com/binary+edge_spanish.mp4"
-                        controls
-                        width="95%"
-                        height="95%"
-                    />
+                    <Streming/>
+                   {// <ReactPlayer
+                   //     url="https://lifeontop.s3.amazonaws.com/binary+edge_spanish.mp4"
+                     //   controls
+                       // width="95%"
+                        //height="95%"
+                    ///>
+                }
                    
                 </div>
                 <div className="cartComentario">
@@ -46,7 +50,24 @@ export default function OnlivePage() {
                 <div>
                     <Seguir />
                 </div>
-             </div>
+            </div>
+             <Upload >
+                <form action="">
+                    <div className="form_container">
+                        <div>
+                            <span>
+                                 <MdFileUpload
+                                     size={'40px'}
+                                 />
+                            </span>
+                            <input type="file" name="file" id="file" />
+                        </div>
+                        <div>
+                        <button type="submit">Subir</button>
+                        </div>
+                    </div>
+                </form>
+             </Upload>
             <Masvisto
                 imgMasvistos={foring_exchange.imagen_fonde}
             >

@@ -1,12 +1,33 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Containerflex ,  ItemMenuCircular,  MenuContainer } from "./Styled";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import { FaLanguage } from "react-icons/fa";
+import { getLanguage } from "../helper/Response";
+import { LanguageContext } from "../context/languageContext";
+import { GetStorageObjet, getStorage } from "../helper/LocalStorage";
+import Loading from "./Loading";
 export default function Menu() {
     const [lenguaje , setLenguaje] = useState(false)
-
+    const [languages , setLanguages] = useState([])
+    const [loading ,setLoading] = useState(true);
+    const { setLanguage } = useContext(LanguageContext)
     function handleChange() {
         setLenguaje(!lenguaje);
+      
+        getLanguage() .then(res => { 
+            
+            GetStorageObjet('language', res.data.data.languages )
+            setLanguages(res.data.data.languages )
+        })
+        .finally(() => setLoading(false))
+      
+       
+    }
+
+    const handleChangeLanguage = (idLanguage) => {
+        setLanguage(idLanguage)
+        setLenguaje(!lenguaje);
+        console.log(idLanguage)
     }
 
     return (
@@ -18,28 +39,49 @@ export default function Menu() {
                
                 <div className="menu-options">
                     2D 
-                        <div class="switch">
-                            <input type="checkbox" id="mySwitch" class="switch-checkbox" />
-                            <label for="mySwitch" class="switch-label"></label>
+                        <div className="switch">
+                            <input type="checkbox" id="mySwitch" className="switch-checkbox" />
+                            <label htmlFor="mySwitch" className="switch-label"></label>
                         </div>
                     3D
                 </div>
             </Containerflex>
            
             <Containerflex
-                justifyContent="end"
+                direccion="end"
             >
+               
+                
                 {
-                    lenguaje === true ? ( 
-                        <div className="select" id="select-language">
-                            <select name="" id="">
-                                <option  value="1">Ingles</option>
-                                <option value="1">Ingles</option>
-                                <option value="1">Ingles</option>
-                            </select>
-                        </div>
-                     ) : null
+                    lenguaje ? (
+                        <ul>
+                           
+                             { loading ? <Loading/> : ''}
+                            {
+                                languages?.map( item => (
+                                    <li  
+                                        style={ {backgroundColor: `${ item.id === getStorage('lenguaje')? '#2e86c1' :'' }`  }}
+                                        key={item.id}
+                                        onClick={() => handleChangeLanguage(item.id)}
+                                    >
+                                       
+                                       
+                                        <a onClick={() => handleChangeLanguage(item.id)}>
+                                           {
+                                            item.lang_name
+                                           }
+                                        </a>
+                                    </li>
+                                ) )
+                            }
+                                
+                              
+                        </ul>
+                    ):''
                 }
+                  
+                       
+                    
                   
                <ItemMenuCircular 
                 color="linear-gradient(to right, #fff,   #b3b6b7  )"

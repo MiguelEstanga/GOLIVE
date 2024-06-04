@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export default function AvatarGlobal({ img, colorBorder  , data }) {
+export default function AvatarGlobal({ img, colorBorder  , data , shouData=true }) {
   const Style ={
     container:{
         display:'flex',
@@ -34,13 +34,18 @@ export default function AvatarGlobal({ img, colorBorder  , data }) {
          >
             <img width={'100%'} src={img} alt="" />  
         </Avatar>   
-        <Data>
-            <p style={Style.nombre} > {data?.nombre ?? 'nombre'}  </p>
-            <h2 style={Style.h2} >{data?.profesion ?? 'profesion'}</h2>
-            <p style={Style?.academia ?? 'academia'} >
-                {data.academia}
-            </p>
-        </Data>
+        {
+            shouData == true ? (
+                <Data>
+                    <p style={Style.nombre} > {data?.nombre ?? 'nombre'}  </p>
+                    <h2 style={Style.h2} >{data?.profesion ?? 'profesion'}</h2>
+                    <p style={Style?.academia ?? 'academia'} >
+                        {data.academia}
+                    </p>
+                </Data>
+            ) : null
+        }
+        
 
      </div>
        
@@ -51,7 +56,7 @@ const Data = styled.div`
 
 `
 const Avatar = styled.div`
-    border:solid 1px white;
+   
     width:60px;
     height:60px;
     border-radius:50%;

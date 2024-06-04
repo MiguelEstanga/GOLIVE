@@ -1,56 +1,70 @@
-import { ContainerComunidadEvento, H2, Leyenda , Avatar , ContainerComunidad} from "./Styled"
-export default function Comunidad() {
+import { GetStorageObjet } from "../../../helper/LocalStorage"
+import { ContainerComunidadEvento, H2, Leyenda , Avatar , ContainerComunidad , text} from "./Styled"
+export default function Comunidad({
+    BorderColor ,
+    TextColor,
+    bgImgen,
+    academiaImg
+}) {
     const text = {
-        color: '#fff',
+        color: TextColor,
         fontSize: '16px',
         fontWeight: 'bold',
         fontFamily: 'Montserrat',
+        
     }
     return (
        
         <div style={Style.conatiner}>
              <ContainerComunidadEvento>
                 <div style={  Style.evento_text} >
-                    <h2     style={text}  >Comunidad</h2>
+                    <h2 style={text}> Comunidad </h2>
                 </div>
                 <div style={Style.container_comunidad}>
 
                     <ContainerComunidad
-                        borderColor={'#52be80'}
-                         borderRadius={'30px 0 0 30px'}
+                        borderColor={  BorderColor  }
+                        borderRadius={'30px 0 0 30px'}
                         imagenCart={"https://golive.softus.de/assets/assets/images/img_bg_community_socialM.png"}
                     >
 
                          <div style={Style.container_text}>
-                            <h2 style={Style.h2} >Comunidad</h2>
-                            <div>
-                                <img width={'130px'} src="https://imapi.softus.de/school/foreign_ex.png" alt="img"  />
+                            <h2 style={Style.h2} >
+                                Comunidad
+                            </h2>
+                            <div style={{
+                                display:'flex',
+                                justifyContent: 'center',
+                            }}>
+                                <img width={'130px'} src={require(`../../../${GetStorageObjet("schoolId")?.image ?? ''}`)} alt="img"  />
                             </div>
                         </div>
 
                     </ContainerComunidad>
 
                     <ContainerComunidad
-                        borderColor={'#52be80'}
+                        borderColor={BorderColor}
                         borderRadius={'0 30px 30px 0'}
-                        imagenCart={"https://d22yb2tbj8zopv.cloudfront.net/src/school/bg-btns-menu-foreing-fex.png"}
+                        imagenCart={require(`../../../${GetStorageObjet("schoolId")?.bg_commun}`) }
                     >
                         <div style={Style.container_text_ir}>
                             <H2>
                                 Qué hay de nuevo 
                             </H2>
                             <H2
-                                color=" #27ae60 "
+                                color={TextColor}
                             >
                                 en tu comunidad?
                             </H2>
-                            <Leyenda>
+                            <Leyenda
+                                color={TextColor}
+                            >
                                 Presentamos el curso de divisas de IM Academy,
                                 diseñado para educar a los estudiantes con el 
                                 conocimiento mas completo y práctico en el mundo del 
                                 comercio de devisas.
 
-                                <a href="https://im.academy/">
+                                <a   href="https://im.academy/">
                                     ir
                                 </a>
                             </Leyenda>
@@ -62,7 +76,7 @@ export default function Comunidad() {
              
              <ContainerComunidadEvento>
                 <div style={Style.evento_text} >
-                    <h2  style={text}  >Eventos</h2>
+                    <h2  style={text} >Eventos</h2>
                     <a
                         style={text}
                     >
@@ -123,9 +137,11 @@ export default function Comunidad() {
     )
 }
 
+
+
 const Style = {
     conatiner :{
-        border:'solid 1px  red ;',
+     
         gap:'20px',
         width: '80%',
         margin: 'auto',

@@ -1,9 +1,17 @@
 *{
   margin: 0;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
 }
 :root{
   --color-primary: #FCD535;
-  --fon-family: Montserrat;
+  --fon-family: url('./asset/Montserrat-BlackItalic.otf')!important;
+}
+
+.fuente_global{
+  font-family:url('./asset/Montserrat-BlackItalic.otf')!important;
 }
 .App {
   text-align: center;
@@ -239,7 +247,7 @@ select:focus {
 }
 
 .title-educators{
-  font-family: Arial;
+
   font-size: 20px;
   font-weight: 900;
   color: white;
@@ -249,7 +257,7 @@ select:focus {
 .container-educators-top{
 
   width: 80%;
-  border: solid 1px white;
+
   margin: 10px auto;
   display: flex;
   flex-direction: column;
@@ -258,10 +266,11 @@ select:focus {
 }
 
 .selector-session-foreing{
-
-  margin: auto;
-  width: 80%;
+ 
+  margin: auto ;
+  
+  max-width: 1600px;
   display: grid;
-  grid-template-columns: 20% 75%;
+  grid-template-columns: 10% auto;
   gap: 10px;
 }

@@ -8,12 +8,15 @@ export const StyledOnlivePage = styled.div`
     width: 100vw;
     margin: 0 ;
     .data_teacher{
-        border: solid 1px rgba( 244, 246, 247 , .7);
+        border-bottom: solid 1px rgba( 244, 246, 247 , .1);
+        border-left: solid 1px rgba( 244, 246, 247 , .1);
+        border-right: solid 1px rgba( 244, 246, 247 , .1);
+       
         width: 67%;
         display: flex;
         justify-content: space-between;
-        align-items: center;
-        height: 70px;
+        align-items: end;
+        height: 100px;
         margin-top: 10px;
         position: relative;
         top: -1%;
@@ -91,7 +94,7 @@ export const Masvisto = styled.div`
         font-size: 30px;
         font-weight: 900;
         color: white;
-        font-family: Montserrat;
+     
     }
 `
 
@@ -104,4 +107,20 @@ export const VIDEOS = styled.div`
     background-color: #34975d;
     border-radius: 20px;
     border: solid 1px #34975d;
+`
+
+export const Upload = styled.div`
+    max-width:105rem;
+    border: solid 1px #34975d;
+    height: 10px;
+    padding: 20px;
+    margin: 20px auto;
+
+    .form_container{
+        display: flex;
+        flex-direction: row;
+        align-items: space-between;
+        justify-content: space-between;
+    }
+
 `

@@ -2,24 +2,30 @@ import styled from "styled-components";
 
 export const DivContainer = styled.div`
     
+     
     display: flex;
     position: relative;
     flex-direction: column;
-    background-image:url('https://golive.softus.de/assets/assets/images/bg-welcome.png');
-    background-size: cover;
-    height: 100vh;
+    background-image:url('https://golive.softus.de/assets/assets/images/bg-welcome.png') ;
+    background:  black;
+    background-size:  cover;
+    height:100vh;
     width: 100%;
-   
+
     color: white;
+
+    @media (max-width: 1600px) {
+       height: auto;
+    }
 `;
 
 export const Welcome = styled.h1`
 width: 300px;
-   height: 150px;
-   text-align: left;
-  font-size: 140px;
-  font-weight: bold;
-  font-family: 'Montserrat', sans-serif;
+height: 150px;
+text-align: left;
+font-size: 140px;
+font-weight: bold;
+
 `;
 
 export const Subtitle = styled.h2`
@@ -28,17 +34,17 @@ export const Subtitle = styled.h2`
     margin-top: 30px;
     fonst-size: 60px;
     font-weight: 100;
-    font-family: 'Montserrat', sans-serif;
+   
    
     text-align: left;
 `
 
 export const ContainerScool = styled.div`
-
-    width: 90%;
+  
+    width: 100%;
     margin-top:80px;
     display:grid;
-    gap: 10px;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap:9px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     please-content: center;
  `

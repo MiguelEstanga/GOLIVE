@@ -13,36 +13,36 @@ export const MenuContainer = styled.div`
 
 export const CartProfesoresTopContainer = styled.div`
     position: relative;
-    border:solid 1px  #1d8348 ;
+    border:solid 1px  ${ (props) => props.colorBorder } ;
     border-radius: 30px;
     background-color: ${ (props) => props.colorFondo};
-    width: 180px;
+    width: 160px;
     display: flex;
     align-items: end;
     justify-content: center;
     padding: 20px;
-    height: 180px;
+    height: 160px;
     background-image: url(${(props) => props.imagenCart});
     background-size: cover;
-    
+    background-position: center;
     opacity: 0.8;
 `;
 
 export const TextData = styled.p`
     color: ${ (props) => props.colorTexto ?? '#fff'} ;
     margin: 5px 0;
-    font-family: 'Montserrat', sans-serif;
+    
     font-weight: bold;
     font-size: 15px;
 `
 
 export const Avatar = styled.div`
-    border:solid 1px ${ (props) => props.colorborder ?? '#fff'} ;
+    border:solid 1px ${ (props) => props.colorborder } ;
     border-radius: 50%;
-    width:  ${ (props) => props.width ?? '150px'};
-    height:  ${ (props) => props.height ?? '150px'};
+    width:  ${ (props) => props.width ?? '130px'};
+    height:  ${ (props) => props.height ?? '130px'};
     position: absolute;
-    top: -60px;
+    top: -66px;
 
 `
 export const AvatarInlive = styled.div`
@@ -104,7 +104,7 @@ export const H2 = styled.h2`
     color: ${ (props) => props.color ??  '#fff'};
     font-size: 20px;
     font-weight: bold;
-    font-family: Montserrat;
+    
 `
 
 export const ContainerComunidadEvento = styled.div`
@@ -115,7 +115,6 @@ export const ContainerComunidadEvento = styled.div`
     border-radius: 30px;
     gap:'10px';
     background-image: url(${(props) => props.imagenCart});
-   
     background-size: cover;
     background-position: center;
 

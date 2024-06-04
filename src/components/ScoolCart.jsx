@@ -1,31 +1,51 @@
+import { useContext } from "react";
 import { CartContainer, Comenzar, LogoContainer  , LogoScool} from "./Styled";
-export default function ScoolCart({color , image , titulo , logo_text}) {
+import ShouldeContext from "../context/ShouldeContext";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { GetStorageObjet, SetStorageObjet } from "../helper/LocalStorage";
+export default function ScoolCart({color , image , titulo , logo_text , items}) {
+    const { setSchoolId   } = useContext(ShouldeContext);
+    const navegation = useNavigate();
     return (
        <CartContainer
         color={color}
-        image={image}
+        image={require(`../${items.bacground_img}`)}
        >
             <LogoContainer> 
-                <LogoScool 
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/1200px-Bitcoin.svg.png"  
-                />
-                <div  className="scuela-titulo-container-logo">
+               
+                <div style={Style.container}>
                     <LogoScool 
-                        borderRadius={'1px'}
-                        width={'15px'}
-                        height={'15px'}
-                        src={logo_text} 
+                        width={'100%'}
+                        height={'70%'}
+                        src={require(`../${items.image}`)}  
                     />
-                   
-                        {titulo}
-                    
                 </div>
                
             </LogoContainer>
-            <Comenzar>
+            <Comenzar
+                onClick={() => {
+                  
+                    SetStorageObjet('schoolId', items)
+                   // setSchoolId(items)
+                   console.log(GetStorageObjet('schoolId'))
+                   navegation("/educators-and-schedules")
+                   
+                }}
+            >
                 Comenzar
             </Comenzar>
           
        </CartContainer>
     )
+}
+
+const Style ={
+    container :{
+     
+        with:'80px!important',
+        height:'100px',
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center',
+    }
 }

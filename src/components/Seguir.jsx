@@ -15,5 +15,5 @@ const StyledButton = styled.div`
    color: white;
    font-size: 15px;
    font-weight: bold;
-   font-family: Montserrat;
+  
 `
