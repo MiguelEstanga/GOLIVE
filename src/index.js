@@ -5,13 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ShouldeProvider } from './context/ShouldeContext';
 import LanguageProvider from './context/languageContext';
+import TeacheProvider from './context/TeacherContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <LanguageProvider>
       <ShouldeProvider>
-        <App />
+        <TeacheProvider>
+          <App />
+        </TeacheProvider>
       </ShouldeProvider>
     </LanguageProvider>
     

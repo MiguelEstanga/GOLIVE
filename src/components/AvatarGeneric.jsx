@@ -4,7 +4,6 @@ export default function AvatarGeneric({ name, avatar, width ,height })
   return (
         <Container width={width} height={height} color={avatar}  >
             <img   src={avatar ?? require("../user/loading.jpeg")}  />
-            
         </Container>    
     )
 }

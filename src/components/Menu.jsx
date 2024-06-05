@@ -68,7 +68,7 @@ export default function Menu() {
                                        
                                         <a onClick={() => handleChangeLanguage(item.id)}>
                                            {
-                                            item.lang_name
+                                              item.lang_name.toUpperCase()
                                            }
                                         </a>
                                     </li>

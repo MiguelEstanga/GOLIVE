@@ -4,7 +4,9 @@ import { IoHomeOutline } from "react-icons/io5";
 import { MdOutlineNotifications } from "react-icons/md";
 import { RxExit } from "react-icons/rx";
 
-export default function Menu() {
+export default function Menu({
+    logo
+}) {
     const id = {
         ecommerce: "66febe3a-9849-495a-b7da-aace14720f47",
         personal_development: "a15451b5-7176-4998-a22d-235e9183ba8d",
@@ -19,7 +21,7 @@ export default function Menu() {
        <nav className="navbar-schedules">
             {id.ecommerce && (
                 <>
-                    <img src={SocialMedia} alt="social media logo" title="social media logo" />
+                    <img src={require(`../../../${logo}`) } alt="social media logo" title="social media logo" />
                     <div className="schedules-actions">
                         <div className="schedules-select">
                             <select>

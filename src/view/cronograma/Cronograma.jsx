@@ -1,26 +1,35 @@
 import Clases from "./Clases";
 import { Container ,  ContainerInfo,  CronogramaStyle , ContainerAvatar , Dias } from "./styled";
 import AvatarGeneric from "../../components/AvatarGeneric";
-import { useEffect , useState } from "react";
+import { useContext, useEffect , useState } from "react";
 import { getProfesor } from "../../helper/Response";
+import { TeacherContext } from "../../context/TeacherContext";
+import { useNavigate } from "react-router-dom";
 export default function Cronograma({ children , name }) 
 {
     const [data , setData] = useState([])
-
+    const {setTeacher} = useContext(TeacherContext)
+    const navegacion = useNavigate()
     useEffect( () => {
         getProfesor(name)
         .then(res => { 
             console.log('profesores')
             setData(res.data.data)
+           
             console.log(res.data.data)
         })
     },[])
     return (
-       
             <CronogramaStyle>
                 <ContainerInfo>
-                    <ContainerAvatar>
-                        <AvatarGeneric
+                    <ContainerAvatar
+                        onClick={() => {
+                            setTeacher(data ?? {} ) 
+                            navegacion('/on-live-page')
+                           console.log(data)
+                        }}
+                    >
+                        <AvatarGeneric  
                             width={'100px'}
                             height={'100px'}
                             avatar={data?.user?.image }

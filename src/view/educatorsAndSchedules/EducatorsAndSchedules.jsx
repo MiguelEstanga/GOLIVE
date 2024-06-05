@@ -12,7 +12,7 @@ import Clases from "../cronograma/Clases";
 import FormatiarHora from "../../helper/FormatiarHora";
 import { getCategoria, review } from "../../helper/Response";
 import { LanguageContext } from "../../context/languageContext";
-import { GetStorageObjet } from "../../helper/LocalStorage";
+import { GetStorageObjet, getStorage } from "../../helper/LocalStorage";
 import { useNavigate } from "react-router-dom";
 export default function EducatorsAndSchedules() 
 {
@@ -20,27 +20,40 @@ export default function EducatorsAndSchedules()
   
    const [School , setSchool] = useState([])
    const [profesoresTop , setProfesoresTop] = useState([])
-   const [option , setOption] = useState([]);
-   const [selected, setSelected] = useState(1);
+   const [option , setOption] = useState([
+       {id:1, title:'ALL SECTIONS'},
+   ]);
+   const [selected, setSelected] = useState(0);
 
    const {language} = useContext(LanguageContext);
    const {schoolId,shoulde,setSchoolId } = useContext(ShouldeContext)
    const navegation = useNavigate();
 
-   const dias = [1,2,3,4,5,6,7]
+   const dias = [7,1,2,3,4,5,6]
    const dias_semanas =['Lunes','Martes','Miércoles','Jueves','Viernes' , 'Sábado','Domingo']
     
+   //inicializa las categorias
    async function Categorias()
     {
         const response = await getCategoria();
-        console.log('categorias');
-        console.log(response.data.data);
+        let categorias = response?.data?.data;
+       
+        let parse = [];
+        parse.push( {id:0, title:'ALL SESSIONS' , filter:'all'} )
+        //filtra las categorias por el schoolId
+        parse = categorias?.filter( (data) => data.school_id === GetStorageObjet("schoolId").id  && data.language_id === getStorage("lenguaje") );
+        parse.push( {id:0, title:'ALL SESSIONS' , filter:'all'} )
+       
+       
+        setOption(parse)
     }
 
+    //evento para cambiar filtros por academia 
     const  handleClick = (selected) => {
         setSelected(selected);
     }
 
+    //ordena las clases por el dia
     function reordenarMatrices(matriz1, matriz2) {
         const resultado = new Array(matriz2.length).fill(null);
     
@@ -52,34 +65,10 @@ export default function EducatorsAndSchedules()
     }
 
 
-    const options = [
-        {
-            id:1,
-            select : true,
-            text: "ALL SESSIONS"
-        },
-        {
-            id:2,
-            select : false,
-            text: "FORING EXCHANGE ACADEMY"
-        },
-        {
-            id:3,
-            select : false,
-            text: "FORING EXCHANGE BPRO"
-        }
-    ]
-
-    
-
-
-  
-
     useEffect(() => { 
             Categorias();
-            if(schoolId ===null){
-                navegation("/")
-            }
+
+            //llamamos al top de profesores
             review({
                 schoolId: schoolId.id,
                 languageId: language
@@ -93,43 +82,82 @@ export default function EducatorsAndSchedules()
      } , [])
 
     useEffect(() => {
-       
-        const filteredSchools = shoulde?.filter( (data) => data.school_id === schoolId.id   );
+        let filteredSchools =[];
+        if(selected === 0){
+             filteredSchools = shoulde?.filter( (data) => data.school_id === schoolId.id   );
+        }else{
+            filteredSchools = shoulde?.filter( (data) => data.school_id === schoolId.id  && data.category_id === selected  );
+        }
+        console.log('filter')
+        console.log(filteredSchools)
+
+                 
+        var hash = {};
+        var result2 = [];
+
+        shoulde.forEach(function(current) {
+            if (!hash[current.teacher_id]) {
+                hash[current.teacher_id] = true;
+                result2.push({
+                    teacher_id: current.teacher_id,
+                    days_of_class: [current.weekday],
+                    titles: [current.title],
+                    start_time: current.start_time,
+                    final_hour: current.final_hour
+                });
+            } else {
+                var existingTeacher = result2.find(t => t.teacher_id === current.teacher_id);
+                existingTeacher.days_of_class.push(current.weekday);
+                existingTeacher.titles.push(current.title);
+            }
+        });
+        console.log('result2')
+        console.log(result2)
+
         var ordenarMetadata = {};
 
         filteredSchools.forEach((res , index) => {
             const {teacher_id , weekday , start_time , title} = res;
-            if( !ordenarMetadata[teacher_id]){
+            if( !ordenarMetadata[teacher_id])
+            {
                 ordenarMetadata[teacher_id] = {
                     title:[title],
                     weekdays: [weekday],
                     start_time :[start_time],
                     teacher_id: teacher_id,
-                    diasOrdenados:[null,null,null,null,null,null,null]
+                 
+                    diasOrdenados:[],
+                   
                   };
-            }else{
-              
+            }else
+            {
                 ordenarMetadata[teacher_id].weekdays.push(weekday);
                 ordenarMetadata[teacher_id].title.push(title); 
                 ordenarMetadata[teacher_id].start_time.push(start_time);
+               
             }
 
+
+            
         })
-      
+        
 
         const result = Object.values(ordenarMetadata)
-        var text =[];
+        console.log(result)
         const array = Array(7).fill(null)
+        var test = []
         result.forEach((res , index) => {
+            
             res.weekdays = reordenarMatrices(  res.weekdays, array )
-           // res.weekdays = res.weekdays[ res.weekdays.length - 1 ]
+            //res.diasOrdenados = test
           
         })
         
        
-        setSchool(result) 
-        
-    } , [])
+        setSchool(result)
+        console.log('test')
+        console.log(result)
+    } , [selected])
 
     // esto va fuera a otro componente
     function Matriz({res})
@@ -149,7 +177,7 @@ export default function EducatorsAndSchedules()
                         reorderedWeekdays.map((dia, indexDay) => (
                             <Clases
                                 key={indexDay}
-                                title={dia === null ? '' : dia}
+                                title={dia === null ? '' : res.title}
                                 bgCalendar={
                                     dia !== null
                                         ?   require(`../../${GetStorageObjet("schoolId")?.bg_acad}`)
@@ -166,7 +194,9 @@ export default function EducatorsAndSchedules()
         <EducatorsAndSchedulesContainer
             fullImage={ require(`../../${GetStorageObjet("schoolId")?.background_full }`)  }
         >
-           <Menu/>
+           <Menu
+            logo={ GetStorageObjet("schoolId")?.image }
+           />
            <div className="container-educators-top">
                 <h2
                     className="title-educators"
@@ -205,20 +235,15 @@ export default function EducatorsAndSchedules()
               <div style={{width:'100%'}} >
                 <ContainerOptions>
                    {
-                        options.map( (option, index) => (
+                        option?.slice().reverse().map( (option, index) => (
                             <Option
                                 key={index}
                                 onClick={() => handleClick(option.id)}
                                 selectedColor={ option.id == selected ? require(`../../${GetStorageObjet("schoolId")?.bg_send_preg}`): ""}
-                                
                             >  
-                                <p >
-                                    <LiaBuromobelexperte
-                                        size={20}
-                                    />
-                                </p>
+                                
                                 <p>
-                                    {option.text}
+                                    {option.title}
                                 </p>
                                 
                             </Option>
@@ -248,7 +273,7 @@ export default function EducatorsAndSchedules()
                         {
                             School?.map((res , index) => (
                                 <Cronograma
-                                    key={index}
+                                     key={index}
                                      name={ res.teacher_id }
                                 >
                                     

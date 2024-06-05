@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const MenuContainer = styled.div`
     
     display: flex;
-     border:solid 1px black;
+    
      height: 150px;
      width: 100vw;
     color: white;

@@ -32,7 +32,7 @@ export const ContainerInfo = styled.div`
 export const ContainerAvatar = styled.div`
     width: 20%;
     height: 100%;
-   
+    cursor: pointer;
     display: flex;
     
     flex-direction: row;

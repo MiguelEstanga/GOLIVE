@@ -46,9 +46,6 @@ export default function Welcome2d() {
       setShoulde(metadata)
     }catch(error){
       console.log(error);
-    }finally{
-      console.log('final setSchedule');
-      console.log(GetStorageObjet('shoulde'))
     }
   }
 

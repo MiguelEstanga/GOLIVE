@@ -36,7 +36,7 @@ export default function CartProfesoresTop( {imagen_cart , color_resena  , colorB
                 <TextData
                     colorTexto={color_resena}
                 >
-                    5/5 Resenas
+                    5/5 Reseñas
                 </TextData>
                 
             </div>
