@@ -350,4 +350,181 @@ select:focus {
   cursor: pointer;
 }
 
+.smart-money-title{
+  padding: 50px;
+}
 
+.smart-money{
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.videos-section{
+  width: 800px;
+  height: 500px;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+.progress-section{
+  width: 500px;
+  height: 478px;
+  border-radius: 10px;
+  border: 1px solid black;
+  padding: 10px;
+  margin-bottom: 40px;
+}
+
+.progress-section p,  .progress-section h2{
+  padding-left: 50px;
+
+}
+.progress-section h2{
+  font-size: 40px;
+}
+
+.lessons-p{
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.bar-progress{
+  margin-top: 50px;
+  margin: 0 auto;
+  background-color:#007bff;
+  width: 400px;
+  height: 20px;
+  border-radius: 50px;
+}
+
+.bar-progress div{
+  background-color: black;
+  width: 100px;
+  height: 20px;
+  border-radius: 50px;
+  
+}
+
+.progress-information{
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+
+
+.progress-information span{
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #007bff;
+  display: inline-block;
+}
+
+.progress-class{
+  position: relative;
+}
+
+.progress-class-line{
+  width: 5px;
+  background-color: #007bff;
+  height: 154px;
+  position: absolute;
+  left: 17px;
+  top: 20px;
+}
+
+.buttons-progress{
+  margin-top: 100px;
+  display: flex;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.buttons-progress button{
+  background-color: grey;
+  width: 100px;
+  border: none;
+  border-radius: 50px;
+  padding: 8px;
+  color: black;
+}
+
+.custom-textarea {
+  box-shadow: none;
+  width: 500px; 
+  height: 400px; 
+  font-size: 16px;
+  color: #000; 
+  resize: none; 
+}
+
+.smart-money-comments{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.custom-textarea{
+  width: 600px;
+  height: 300px;
+  border-radius: 50px;
+  border: 1px solid black;
+  outline: none;
+}
+
+.smart-money-comments h2{
+  margin-bottom: 50px;
+  border-bottom: 2px solid #007bff;
+}
+
+.smart-money-comments button{
+  position: absolute;
+  bottom: -20px;
+  background-color: black;
+  width: 200px;
+  padding: 8px;
+  color: white;
+  cursor: pointer;
+  border-radius: 50px;
+}
+
+.old-comments{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.individual-comment{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.individual-comment-img{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #17202a;
+  align-items: end;
+  position: absolute;
+  left: -70px;
+  top: 0px;
+}
+
+.date-commets p{
+  font-size: 8px;
+}
+
+.individual-comment-text{
+  width: 300px;
+  padding: 20px;
+  background-color: #17202a;
+  color: white;
+  border-radius: 10px;
+}

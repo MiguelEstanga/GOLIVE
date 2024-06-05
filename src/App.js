@@ -4,6 +4,7 @@ import EducatorsAndSchedules from "./view/educatorsAndSchedules/EducatorsAndSche
 import Welcome2d from "./view/welcome2d/Welcome2d";
 import OnlivePage from "./view/onLivePage/OnlivePage";
 import Cronograma from './view/cronograma/Cronograma';
+import { SmartMoney } from './view/SmartMoney/SmartMoney';
 function App() {
   return (
     <BrowserRouter>
@@ -13,6 +14,7 @@ function App() {
         <Route path="/Welcome2d" element={<Welcome2d />} />
         <Route path="/educators-and-schedules" element={<EducatorsAndSchedules />} />
         <Route path="/on-live-page" element={<OnlivePage />} />
+        <Route path="/smart-money" element={ <SmartMoney />} />
 
       </Routes>
   </BrowserRouter>
