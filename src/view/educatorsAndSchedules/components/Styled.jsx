@@ -43,6 +43,7 @@ export const Avatar = styled.div`
     height:  ${ (props) => props.height ?? '130px'};
     position: absolute;
     top: -66px;
+    cursor: pointer;
 
 `
 export const AvatarInlive = styled.div`

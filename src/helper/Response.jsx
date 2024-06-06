@@ -9,7 +9,7 @@ export async function  escuelas()
 
 export async function  schedule() 
 {
-    console.log('api ' + endpoints.schedule);
+   
     const  response = await axios.get(`${endpoints.schedule}`)
     return response;
 }
@@ -41,5 +41,18 @@ export async function  review({schoolId,  languageId})
 export async function  getCategoria()
 {
     const  response = await axios.get(`${endpoints.categoria}`)
+    return response;
+}
+
+export async function  getFavoriteVideo({id_teacher, id_school, id_language})
+{
+    const  response = await axios.post(`${endpoints.favoriteVideo}` ,{
+        body:{
+            id_teacher:id_teacher,
+            id_school:id_school,
+            id_language:id_language,
+        }
+    }
+    )
     return response;
 }

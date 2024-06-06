@@ -1,14 +1,56 @@
+import styled from "styled-components";
+
 function ProgressBar({ data }) {
     return (
         <div>
             {data.map((_, index) => (
-                <div className="progress-information" key={index}> 
-                    <span></span>
+                <ProgressBarList key={index}  >
+                
+                    <span   className={  index === 0 ? "" :"list"} ></span>
                     <p>{`${index}. clase ${index}`}</p>
-                </div>
+                
+                </ProgressBarList>
             ))}
         </div>
     );
 }
 
+
+const ProgressBarList = styled.div`
+  position: relative;
+    display: flex;
+  align-items: center;
+  padding: 10px;
+  margin-top: 10px;
+  
+  
+ span{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    border: solid 1px #fff;
+    margin-right: 10px;
+    position: relative;
+
+    span:not(:first-child) {
+        position: relative; /* Reset position for proper before pseudo-element behavior */
+     }
+    &::before{
+       
+    }
+ }
+
+ .list::before{
+     content: "";
+        position: absolute;
+        bottom: 0;
+        width: 1px;
+        left: 50%;
+        right: 50%;
+        bottom: 10px;
+        height: 40px;
+        background-color: #fff;
+ }
+`
 export { ProgressBar };

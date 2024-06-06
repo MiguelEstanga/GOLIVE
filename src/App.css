@@ -1,8 +1,8 @@
 *{
   margin: 0;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat";
   font-optical-sizing: auto;
-  font-weight: 500;
+  font-weight: 100;
   font-style: normal;
 }
 :root{
@@ -362,12 +362,7 @@ select:focus {
   gap: 20px;
 }
 
-.videos-section{
-  width: 800px;
-  height: 500px;
-  border-radius: 10px;
-  border: 1px solid black;
-}
+
 .progress-section{
   width: 500px;
   height: 478px;
@@ -399,33 +394,14 @@ select:focus {
   border-radius: 50px;
 }
 
-.bar-progress div{
-  background-color: black;
-  width: 100px;
-  height: 20px;
-  border-radius: 50px;
-  
-}
-
-.progress-information{
-  display: flex;
-  align-items: center;
-  padding: 10px;
-}
 
 
 
-.progress-information span{
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: #007bff;
-  display: inline-block;
-}
 
-.progress-class{
-  position: relative;
-}
+
+
+
+
 
 .progress-class-line{
   width: 5px;
@@ -436,21 +412,7 @@ select:focus {
   top: 20px;
 }
 
-.buttons-progress{
-  margin-top: 100px;
-  display: flex;
-  gap: 10px;
-  cursor: pointer;
-}
 
-.buttons-progress button{
-  background-color: grey;
-  width: 100px;
-  border: none;
-  border-radius: 50px;
-  padding: 8px;
-  color: black;
-}
 
 .custom-textarea {
   box-shadow: none;
@@ -458,6 +420,7 @@ select:focus {
   height: 400px; 
   font-size: 16px;
   color: #000; 
+  border: solid 1px #fff;
   resize: none; 
 }
 
@@ -468,13 +431,14 @@ select:focus {
   flex-direction: column;
   position: relative;
   margin-bottom: 30px;
+
 }
 
 .custom-textarea{
   width: 600px;
-  height: 300px;
-  border-radius: 50px;
-  border: 1px solid black;
+  height: 100px;
+  border-radius: 20px;
+ 
   outline: none;
 }
 
@@ -484,33 +448,22 @@ select:focus {
 }
 
 .smart-money-comments button{
-  position: absolute;
-  bottom: -20px;
-  background-color: black;
-  width: 200px;
-  padding: 8px;
-  color: white;
-  cursor: pointer;
-  border-radius: 50px;
+
 }
 
-.old-comments{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
+
 .individual-comment{
   margin-top: 20px;
   margin-bottom: 20px;
   position: relative;
+  width: 700px;
 }
 
-.individual-comment-img{
-  width: 50px;
-  height: 50px;
+.individual-comment-img{  
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  background-color: #17202a;
+  background-color: #525f6d;
   align-items: end;
   position: absolute;
   left: -70px;
@@ -518,13 +471,21 @@ select:focus {
 }
 
 .date-commets p{
-  font-size: 8px;
+  font-size: 13px;
+  color: #fff;
 }
 
-.individual-comment-text{
-  width: 300px;
-  padding: 20px;
-  background-color: #17202a;
-  color: white;
+.options{
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
   border-radius: 10px;
+  text-align: center;
+}
+.options a{
+  
+  text-decoration: none;
 }

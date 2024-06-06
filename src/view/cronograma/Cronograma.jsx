@@ -13,10 +13,10 @@ export default function Cronograma({ children , name })
     useEffect( () => {
         getProfesor(name)
         .then(res => { 
-            console.log('profesores')
+           
             setData(res.data.data)
            
-            console.log(res.data.data)
+               
         })
     },[])
     return (
@@ -26,7 +26,7 @@ export default function Cronograma({ children , name })
                         onClick={() => {
                             setTeacher(data ?? {} ) 
                             navegacion('/on-live-page')
-                           console.log(data)
+                           
                         }}
                     >
                         <AvatarGeneric  

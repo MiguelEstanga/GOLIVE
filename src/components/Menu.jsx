@@ -4,18 +4,20 @@ import { RiLogoutBoxRLine } from "react-icons/ri";
 import { FaLanguage } from "react-icons/fa";
 import { getLanguage } from "../helper/Response";
 import { LanguageContext } from "../context/languageContext";
-import { GetStorageObjet, getStorage } from "../helper/LocalStorage";
+import { GetStorageObjet, getStorage, setStorage } from "../helper/LocalStorage";
 import Loading from "./Loading";
 export default function Menu() {
     const [lenguaje , setLenguaje] = useState(false)
     const [languages , setLanguages] = useState([])
     const [loading ,setLoading] = useState(true);
     const { setLanguage } = useContext(LanguageContext)
+
+    //setea el lenguaje de la pagina
     function handleChange() {
         setLenguaje(!lenguaje);
       
         getLanguage() .then(res => { 
-            
+                //guarda el lenguaje en el local storage
             GetStorageObjet('language', res.data.data.languages )
             setLanguages(res.data.data.languages )
         })
@@ -24,17 +26,18 @@ export default function Menu() {
        
     }
 
+    //abre la barra donde estan los lenguajes
     const handleChangeLanguage = (idLanguage) => {
         setLanguage(idLanguage)
         setLenguaje(!lenguaje);
-        console.log(idLanguage)
+        setStorage('lenguaje', idLanguage)
     }
 
     return (
         <MenuContainer>
             <Containerflex>
                 <div className="menu-logo">
-                    <img src="https://golive.softus.de/assets/assets/images/IM-logo.png" alt="logo" width={'60px'} />
+                    <img src={`${require('../asset/icon.png')}`} alt="logo" width={'60px'} />
                 </div>
                
                 <div className="menu-options">

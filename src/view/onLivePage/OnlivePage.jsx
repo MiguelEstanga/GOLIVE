@@ -9,21 +9,37 @@ import AvatarGlobal  from "../../components/Avatar";
 import Seguir from "../../components/Seguir";
 import { MdFileUpload } from "react-icons/md";
 import { useContext, useEffect, useState } from "react";
-import { GetStorageObjet } from "../../helper/LocalStorage";
+import { GetStorageObjet, getStorage } from "../../helper/LocalStorage";
 import { FaUserLarge } from "react-icons/fa6";
 import { FaShareAlt } from "react-icons/fa";
 import InLive from "../educatorsAndSchedules/components/inLive";
 import { TeacherContext } from "../../context/TeacherContext";
+import { getFavoriteVideo } from "../../helper/Response";
 
 export default function OnlivePage() {
     const [alto , setAlto] = useState(250)
     const [show , setShow] = useState(false)
     const {teacher} = useContext( TeacherContext )
+    const [videos , setVideos] = useState([])
 
+    async function Videos() {
+        const response =  await getFavoriteVideo(
+             teacher.teacher.teacher_id,
+            GetStorageObjet('schoolId').id,
+             getStorage('lenguaje')
+        )
+        
+        if(response.status === 200){
+            setVideos([])
+        }
+        setVideos(response.data)
+       
+    }
 
-    useEffect(() => {
-        console.log(teacher)
-    })
+    useEffect(() => {     
+       Videos()
+      
+    },[])
     const handleClick = () => {
         setShow(!show)
     }
@@ -103,25 +119,13 @@ export default function OnlivePage() {
                         show ? 'See Less' :'See more' 
                     }
                 </div>
+
                  <div className="favorito_seccion">
-                    <VIDEOS>
-                        
-                    </VIDEOS>
-                    <VIDEOS>
-                        
-                    </VIDEOS>
-                    <VIDEOS>
-                        
-                    </VIDEOS>
-                    <VIDEOS>
-                        
-                    </VIDEOS>
-                    <VIDEOS>
-                        
-                    </VIDEOS>
-                    <VIDEOS>
-                        
-                    </VIDEOS>
+                    {
+                        //si hay videos renderizarlos
+                        videos.length > 0 ? videos.map( (video,index) => (<VIDEOS key={index} ></VIDEOS>  )) : <p>there is no video</p>
+                    }
+                   
                 </div>   
             </Masvisto>
             <LiveEducator>

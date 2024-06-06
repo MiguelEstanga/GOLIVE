@@ -31,7 +31,7 @@ export default function Welcome2d() {
         
       }finally {
         setLoading(false);
-        console.log('final escuelas');
+        
       }
      
   }
@@ -52,7 +52,7 @@ export default function Welcome2d() {
   useEffect( () => {
       setStorage('lenguaje', language)
       setEscuelas()
-      setSchedule()
+     // setSchedule()
   }, [language])
   return (
     <>

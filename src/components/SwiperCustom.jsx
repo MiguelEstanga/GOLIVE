@@ -40,65 +40,16 @@ export default function SwiperCustom(props) {
   return (
    <>
     <Swiper
-    modules={[Virtual, Navigation, Pagination]}
-    onSwiper={setSwiperRef}
-    slidesPerView={5}
-    centeredSlides={true}
-    spaceBetween={20}
-    pagination={{
-      type: 'fraction',
-    }}
-    navigation={true}
-    virtual
+      modules={[Virtual, Navigation, Pagination]}
+      onSwiper={setSwiperRef}
+      slidesPerView={5}
+      
+      spaceBetween={10}
+    
+      navigation={true}
+      virtual
   >
     
-      <SwiperSlide >
-          <VIDEOS
-            imagenenContainerVideo={imagenes.imagen_academia1}
-          />
-          
-      </SwiperSlide>
-      <SwiperSlide >
-          <VIDEOS
-            imagenenContainerVideo={imagenes.imagen_academia1}
-          />
-          
-      </SwiperSlide>
-      
-      <SwiperSlide >
-          <VIDEOS
-            imagenenContainerVideo={imagenes.imagen_academia1}
-          />
-          
-      </SwiperSlide>
-      
-      <SwiperSlide >
-          <VIDEOS
-            imagenenContainerVideo={imagenes.imagen_academia1}
-          />
-          
-      </SwiperSlide>
-      
-      <SwiperSlide >
-          <VIDEOS
-            imagenenContainerVideo={imagenes.imagen_academia1}
-          />
-          
-      </SwiperSlide>
-      
-      <SwiperSlide >
-          <VIDEOS
-            imagenenContainerVideo={imagenes.imagen_academia1}
-          />
-          
-      </SwiperSlide>
-      
-      <SwiperSlide >
-          <VIDEOS
-            imagenenContainerVideo={imagenes.imagen_academia1}
-          />
-          
-      </SwiperSlide>
       
   </Swiper>
 

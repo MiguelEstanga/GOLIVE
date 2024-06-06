@@ -15,7 +15,6 @@ function App() {
         <Route path="/educators-and-schedules" element={<EducatorsAndSchedules />} />
         <Route path="/on-live-page" element={<OnlivePage />} />
         <Route path="/smart-money" element={ <SmartMoney />} />
-
       </Routes>
   </BrowserRouter>
   );

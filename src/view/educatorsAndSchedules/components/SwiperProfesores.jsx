@@ -50,12 +50,17 @@ export default function SwiperProfesores({
         onSwiper={setSwiperRef}
         slidesPerView={5}
         centeredSlides={true}
-        spaceBetween={30}
+        spaceBetween={5}
         pagination={{
           type: 'fraction',
         }}
         navigation={true}
         virtual
+
+        style={{
+          '--swiper-navigation-color': '#fff', // Change to your preferred color
+          '--navigation-background-color':colorBorder,
+        }}
       >
         {profesores?.map(  (profesor , index) => (
           <SwiperSlide key={profesor.id} virtualIndex={index}>

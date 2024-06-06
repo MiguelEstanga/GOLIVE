@@ -1,47 +1,113 @@
-import Menu from "../../components/Menu"
 import { ProgressBar } from "./components/ProgressBar";
-import { Comments } from "./components/Comments";
 
-function SmartMoney(){
-    const data = [1,2,3,4,5]
+import { Comments } from "./components/Comments";
+import { 
+        CustomInput, 
+        SmartMoneyContainer, 
+        SmartMoneyTitle , 
+        SmartMoneySection, 
+        ProgressBarContainer , 
+        Progreso, 
+        BTN, 
+        ContainerComentarios,
+        ContainerProgresoBar,
+        OldComentarios,
+        VideosSection
+    } from "./styled";
+import { GetStorageObjet } from "../../helper/LocalStorage";
+import Footer2d from "../../components/Footer2d";
+import { AiOutlineLike } from "react-icons/ai";
+import { AiOutlineDislike } from "react-icons/ai";
+import Menu from "../educatorsAndSchedules/components/Menu";
+function SmartMoney()
+{
+    const data = [1,2,3,4,5,6,7]
     const comments = [1,2,3,4,5];
 
     return(
-        <>
-            <Menu />
-            <div className="smart-money-title">
-                <h1>1. Smart Money</h1>
-                <h2>Modules - Smart Money Concepts</h2>
-            </div>
-            <div className="smart-money">
-                <div className="videos-section"></div>
-                <div className="progress-section">
-                    <h2>My Progress 20%</h2>
-                    <p className="lessons-p">1 de 5 lessons</p>
-                    <div className="bar-progress">
-                        <div className="bar-progress-completed"></div>
-                    </div>
-                    <div className="progress-class">
-                        <div className="progress-class-line"></div>
-                        <ProgressBar data={data} />
-                    </div>
-                    <div className="buttons-progress">
-                        <button>PREVIOUS</button>
-                        <button>NEXT</button>
-                    </div>
-                </div>
-            </div>
+        <SmartMoneyContainer
+            bgimg={require(`../../${GetStorageObjet('schoolId').background_full}`)}
+        >
+             <Menu
+            logo={ GetStorageObjet("schoolId")?.image }
+           />
+            <SmartMoneyTitle>
+                 <h1>1. Smart Money</h1>
+                 <h2>Modules - Smart Money Concepts</h2>
+            </SmartMoneyTitle>
+            
+            <SmartMoneySection>
+                    <VideosSection colorBorder={GetStorageObjet('schoolId').cl_border}>
 
-            <div className="smart-money-comments">
-                <h2>COMMENTS</h2>
-                <textarea className="custom-textarea"></textarea>
-                <button>SEND</button>
-            </div>
 
-            <div className="old-comments">
-                <Comments comments={comments} />
-            </div>
-        </>
+                    </VideosSection>
+                    <div className="videos-section"></div>
+                    <ProgressBarContainer
+                         bgimg={require(`../../${GetStorageObjet('schoolId').bg_educ}`)}
+                         borderColor = {GetStorageObjet('schoolId').cl_border}
+                    >
+                        <h2>My Progress 0%</h2>
+                            <p className="lessons-p">1 de 5 lessons</p>
+                            <ContainerProgresoBar
+                                colorContainer={GetStorageObjet('schoolId').cl_backg}
+                            >
+                                <Progreso  progreso={10} colorProgreso={GetStorageObjet('schoolId').color} />
+                            </ContainerProgresoBar>
+                          
+                            <div className="progress-class">
+                                
+                                <ProgressBar data={data} />
+                            </div>
+                            <div className="buttons-progress">
+                                <div>
+                                    <button>PREVIOUS</button>
+                                    <button>NEXT</button>
+
+                                </div>
+                                <div className="like-dislike">
+                                    <div className="texto">
+                                       Mark as read
+                                    </div>
+                                    <div className="buttons">
+                                        <div className="like">
+                                            <AiOutlineLike 
+                                                color={" #797d7f "}
+                                                
+                                            />
+                                        </div>
+                                        <div className="dislike">
+                                            <AiOutlineDislike 
+                                                color={"#797d7f"}
+                                            />
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+
+                            </div>
+                    </ProgressBarContainer>
+                   
+            </SmartMoneySection>
+            <ContainerComentarios>
+                <CustomInput
+                    colorInput={GetStorageObjet('schoolId').cl_border}
+                />
+                <BTN
+                     bgimg={require(`../../${GetStorageObjet('schoolId').bg_btns}`)}
+                >SEND</BTN>
+            </ContainerComentarios>
+            <OldComentarios>
+                 <Comments comments={comments} />
+            </OldComentarios>
+            
+           
+          
+
+            <Footer2d
+               position={'relative'}
+               mt="50px"
+           />
+        </SmartMoneyContainer>
     )
 }
 

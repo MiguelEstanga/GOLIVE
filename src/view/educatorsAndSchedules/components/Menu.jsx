@@ -3,10 +3,11 @@ import SocialMedia from "../../../school/logo-social-media.png";
 import { IoHomeOutline } from "react-icons/io5";
 import { MdOutlineNotifications } from "react-icons/md";
 import { RxExit } from "react-icons/rx";
-
+import { useNavigate } from "react-router-dom";
 export default function Menu({
     logo
 }) {
+    const navegacion = useNavigate();
     const id = {
         ecommerce: "66febe3a-9849-495a-b7da-aace14720f47",
         personal_development: "a15451b5-7176-4998-a22d-235e9183ba8d",
@@ -21,7 +22,12 @@ export default function Menu({
        <nav className="navbar-schedules">
             {id.ecommerce && (
                 <>
-                    <img src={require(`../../../${logo}`) } alt="social media logo" title="social media logo" />
+                    <div
+                        style={{ cursor: "pointer" }}
+                    onClick={ () => navegacion(`/educators-and-schedules`) } className="schedules-logo">
+                        <img src={require(`../../../${logo}`) } alt="social media logo" title="social media logo" />
+                    </div>
+                  
                     <div className="schedules-actions">
                         <div className="schedules-select">
                             <select>
@@ -30,7 +36,10 @@ export default function Menu({
                             <button>Academia</button>
                         </div>
                         <div className="schedules-options">
-                            <IoHomeOutline />
+                            <IoHomeOutline
+                                style={{cursor: "pointer"}}
+                                onClick={() => navegacion(`/Welcome2d`)}
+                            />
                             <MdOutlineNotifications />
                             <RxExit />
                         </div>

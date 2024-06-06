@@ -2,18 +2,17 @@ import React, { useContext, useEffect, useState } from "react";
 import Menu from "./components/Menu";
 import SwiperProfesores from "./components/SwiperProfesores";
 import {   Option, Style , ContainerAvatars , Avatars , TableClases , EducatorsAndSchedulesContainer, ContainerDias, ContainerOptions} from "./Styled";
-import { LiaBuromobelexperte } from "react-icons/lia";
 import Footer2d from "../../components/Footer2d";
 import InLive from "./components/inLive";
 import Comunidad from "./components/Comunidad";
 import ShouldeContext from "../../context/ShouldeContext";
 import Cronograma from "../cronograma/Cronograma";
 import Clases from "../cronograma/Clases";
-import FormatiarHora from "../../helper/FormatiarHora";
 import { getCategoria, review } from "../../helper/Response";
 import { LanguageContext } from "../../context/languageContext";
 import { GetStorageObjet, getStorage } from "../../helper/LocalStorage";
 import { useNavigate } from "react-router-dom";
+import ModelSmartMoney from "../../components/ModelSmartMoney";
 export default function EducatorsAndSchedules() 
 {
    
@@ -54,14 +53,22 @@ export default function EducatorsAndSchedules()
     }
 
     //ordena las clases por el dia
+
     function reordenarMatrices(matriz1, matriz2) {
         const resultado = new Array(matriz2.length).fill(null);
-    
+        const resultado2 = new Array(matriz2.length).fill(null);
+
+        matriz1.forEach((valor, indice) => {
+            resultado[indice] = valor;
+            resultado2[indice] = {valor};
+        });
+
         matriz1.forEach((valor, indice) => {
             resultado[valor - 1] = valor;
+            resultado2[valor - 1] = {valor};
         });
     
-        return resultado;
+        return [resultado, resultado2];
     }
 
 
@@ -82,51 +89,34 @@ export default function EducatorsAndSchedules()
      } , [])
 
     useEffect(() => {
+        //filtramos los sheulder para que no se repitan los profesores
         let filteredSchools =[];
         if(selected === 0){
+            //filtramos por todas las escuelas
              filteredSchools = shoulde?.filter( (data) => data.school_id === schoolId.id   );
         }else{
+            //filtramos por categorias
             filteredSchools = shoulde?.filter( (data) => data.school_id === schoolId.id  && data.category_id === selected  );
         }
-        console.log('filter')
-        console.log(filteredSchools)
-
-                 
-        var hash = {};
-        var result2 = [];
-
-        shoulde.forEach(function(current) {
-            if (!hash[current.teacher_id]) {
-                hash[current.teacher_id] = true;
-                result2.push({
-                    teacher_id: current.teacher_id,
-                    days_of_class: [current.weekday],
-                    titles: [current.title],
-                    start_time: current.start_time,
-                    final_hour: current.final_hour
-                });
-            } else {
-                var existingTeacher = result2.find(t => t.teacher_id === current.teacher_id);
-                existingTeacher.days_of_class.push(current.weekday);
-                existingTeacher.titles.push(current.title);
-            }
-        });
-        console.log('result2')
-        console.log(result2)
-
-        var ordenarMetadata = {};
-
+        var ordenarMetadata = {}; //ordenamos la metada en un array vacio 
+      
         filteredSchools.forEach((res , index) => {
-            const {teacher_id , weekday , start_time , title} = res;
+            const {teacher_id , weekday , start_time , title , final_hour} = res;
             if( !ordenarMetadata[teacher_id])
             {
                 ordenarMetadata[teacher_id] = {
                     title:[title],
                     weekdays: [weekday],
                     start_time :[start_time],
+                    final_hour: [final_hour],
                     teacher_id: teacher_id,
                  
-                    diasOrdenados:[],
+                    diasOrdenados:[{
+                        weekday: weekday,
+                        start_time: start_time,
+                        title: title,
+                        final_hour: final_hour,
+                    }],
                    
                   };
             }else
@@ -134,26 +124,26 @@ export default function EducatorsAndSchedules()
                 ordenarMetadata[teacher_id].weekdays.push(weekday);
                 ordenarMetadata[teacher_id].title.push(title); 
                 ordenarMetadata[teacher_id].start_time.push(start_time);
-               
+                ordenarMetadata[teacher_id].diasOrdenados.push({
+                    weekday: weekday,
+                    start_time: start_time,
+                    title: title,
+                    final_hour: final_hour,
+                })
             }
-
-
-            
+  
         })
         
 
         const result = Object.values(ordenarMetadata)
-        console.log(result)
+       
         const array = Array(7).fill(null)
         var test = []
+
         result.forEach((res , index) => {
-            
-            res.weekdays = reordenarMatrices(  res.weekdays, array )
-            //res.diasOrdenados = test
-          
+            res.weekdays = reordenarMatrices(  res.weekdays, array )[0]
+          // res.diasOrdenados = orden(res.diasOrdenados)
         })
-        
-       
         setSchool(result)
         console.log('test')
         console.log(result)
@@ -177,7 +167,7 @@ export default function EducatorsAndSchedules()
                         reorderedWeekdays.map((dia, indexDay) => (
                             <Clases
                                 key={indexDay}
-                                title={dia === null ? '' : res.title}
+                                title={dia === null ? '' : res.diasOrdenados.filter( data => data.weekday === dia )  }
                                 bgCalendar={
                                     dia !== null
                                         ?   require(`../../${GetStorageObjet("schoolId")?.bg_acad}`)
@@ -233,7 +223,9 @@ export default function EducatorsAndSchedules()
               </div>
 
               <div style={{width:'100%'}} >
-                <ContainerOptions>
+                <ContainerOptions
+                    id="options"
+                >
                    {
                         option?.slice().reverse().map( (option, index) => (
                             <Option
@@ -242,7 +234,11 @@ export default function EducatorsAndSchedules()
                                 selectedColor={ option.id == selected ? require(`../../${GetStorageObjet("schoolId")?.bg_send_preg}`): ""}
                             >  
                                 
-                                <p>
+                                <p 
+                                    style={ { 
+                                        color: option.id == selected ? '#fff': '',
+                                     } }
+                                >
                                     {option.title}
                                 </p>
                                 
@@ -291,7 +287,17 @@ export default function EducatorsAndSchedules()
               </div>
                     
            </div>
-                    
+           {
+            GetStorageObjet("schoolId")?.title === 'Foreign exchange' ? (
+                <ModelSmartMoney
+                    bgColorFondo={GetStorageObjet('schoolId').cl_border} 
+                    bgFondo={require(`../../${GetStorageObjet('schoolId').bg_btns}`)}
+                    academia={GetStorageObjet('schoolId').title}
+                    iconColor={GetStorageObjet('schoolId').color}
+                />
+            ) :""
+           }
+           
            <Comunidad
                 BorderColor={ GetStorageObjet("schoolId")?.cl_border }
                 TextColor={ GetStorageObjet("schoolId")?.color }

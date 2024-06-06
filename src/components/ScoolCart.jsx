@@ -2,10 +2,37 @@ import { useContext } from "react";
 import { CartContainer, Comenzar, LogoContainer  , LogoScool} from "./Styled";
 import ShouldeContext from "../context/ShouldeContext";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import { GetStorageObjet, SetStorageObjet } from "../helper/LocalStorage";
-export default function ScoolCart({color , image , titulo , logo_text , items}) {
-    const { setSchoolId   } = useContext(ShouldeContext);
+import { schedule } from "../helper/Response";
+import { GetStorageObjet, SetStorageObjet, getStorage } from "../helper/LocalStorage";
+
+export default function ScoolCart({color , image , titulo , logo_text , items}) 
+{
+    const { setSchoolId , setShoulde  } = useContext(ShouldeContext);
+
     const navegation = useNavigate();
+
+    async function  setSchedule(schoolId)
+    {
+        const response = await schedule();
+        try{
+            var school = response.data.data.today
+            console.log(getStorage('lenguaje'))
+            console.log(schoolId)
+            var metadata =  school.filter(data => data.language_id === getStorage('lenguaje') && data.school_id === schoolId)
+            SetStorageObjet('shoulde', metadata)
+            setShoulde(metadata)
+            console.log(metadata)
+        }catch(error){
+          console.log(error);
+        }
+    }
+
+    const handleClick = () => {
+        SetStorageObjet('schoolId', items)        
+        setSchedule(GetStorageObjet('schoolId').id )
+        navegation("/educators-and-schedules")
+    }
+
     return (
        <CartContainer
         color={color}
@@ -22,16 +49,7 @@ export default function ScoolCart({color , image , titulo , logo_text , items}) 
                 </div>
                
             </LogoContainer>
-            <Comenzar
-                onClick={() => {
-                  
-                    SetStorageObjet('schoolId', items)
-                   // setSchoolId(items)
-                   console.log(GetStorageObjet('schoolId'))
-                   navegation("/educators-and-schedules")
-                   
-                }}
-            >
+            <Comenzar onClick={ () => handleClick()} >
                 Comenzar
             </Comenzar>
           
@@ -40,8 +58,7 @@ export default function ScoolCart({color , image , titulo , logo_text , items}) 
 }
 
 const Style ={
-    container :{
-     
+    container:{
         with:'80px!important',
         height:'100px',
         display:'flex',

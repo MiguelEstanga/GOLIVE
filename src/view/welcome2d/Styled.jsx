@@ -6,10 +6,10 @@ export const DivContainer = styled.div`
     display: flex;
     position: relative;
     flex-direction: column;
-    background-image:url('https://golive.softus.de/assets/assets/images/bg-welcome.png') ;
-    background:  black;
+    background-image: url(${require('../../asset/main-portada.png')});
+   
     background-size:  cover;
-    height:100vh;
+    height:auto;
     width: 100%;
 
     color: white;

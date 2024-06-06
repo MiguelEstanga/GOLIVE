@@ -1,5 +1,6 @@
 import { GetStorageObjet } from "../../../helper/LocalStorage"
 import { ContainerComunidadEvento, H2, Leyenda , Avatar , ContainerComunidad , text} from "./Styled"
+import { IoIosArrowForward } from "react-icons/io";
 export default function Comunidad({
     BorderColor ,
     TextColor,
@@ -25,7 +26,7 @@ export default function Comunidad({
                     <ContainerComunidad
                         borderColor={  BorderColor  }
                         borderRadius={'30px 0 0 30px'}
-                        imagenCart={"https://golive.softus.de/assets/assets/images/img_bg_community_socialM.png"}
+                        imagenCart={require(`../../../asset/bg.jpg`)}
                     >
 
                          <div style={Style.container_text}>
@@ -64,7 +65,7 @@ export default function Comunidad({
                                 conocimiento mas completo y práctico en el mundo del 
                                 comercio de devisas.
 
-                                <a   href="https://im.academy/">
+                                <a  target="_blank" href="https://im.academy/">
                                     ir
                                 </a>
                             </Leyenda>
@@ -77,22 +78,26 @@ export default function Comunidad({
              <ContainerComunidadEvento>
                 <div style={Style.evento_text} >
                     <h2  style={text} >Eventos</h2>
-                    <a
-                        style={text}
-                    >
-                        Ver todos {'>'}
-                    </a>
+                    <div className="options">
+                        <a
+                            href="#options"
+                            style={text}
+                        >
+                            See all <IoIosArrowForward size={12} />
+                        </a>
+                    </div>
+                    
                 </div>
                 <div >
 
                     <ContainerComunidad
-                        imagenCart={"https://golive.softus.de/assets/assets/images/img_bg_community_socialM.png"}
+                        imagenCart={require(`../../../asset/bg.jpg`) }
                     >
 
                         <div style={{
                             width: '100%',
                             height: '70px',
-                            border: 'solid 1px  #34975d ',
+                            border:`solid 1px  ${GetStorageObjet("schoolId")?.cl_border}`,
                             margin:'10px',
                             borderRadius: '5px',
                             display: 'flex',
@@ -102,9 +107,11 @@ export default function Comunidad({
                         }} >
                             <div>
                                 
-                                <img width={'70px'} src="https://d22yb2tbj8zopv.cloudfront.net/src/user/rvukovic.png" alt="img" style={{
+                                <img width={'70px'} src="https://d22yb2tbj8zopv.cloudfront.net/src/user/rvukovic.png" 
+                                alt="img" style={{
                                     borderRadius: '50%',
-                                }}  />
+                                }} 
+                                 />
 
                                
                             </div>
@@ -113,15 +120,15 @@ export default function Comunidad({
                                 width:'30px',
                                 height:'30px',
                                 padding:'10px',
-                                border:'solid 1px  #34975d ',
+                                border:`solid 1px  ${GetStorageObjet("schoolId")?.cl_border}`,
                                 borderRadius: '50%',
-                                backgroundColor: '#34975d',
+                                backgroundColor: `${GetStorageObjet("schoolId")?.color}`,
                                 display:"flex",
                                 justifyContent: 'center',
                                 alignItems: 'center',
                             } } >
-                                <a  style={{ fontSize:'20px'  }} >
-                                     {">"}
+                                <a href="#options" style={{ fontSize:'20px'  }} >
+                                <IoIosArrowForward size={12} />
                                 </a>
                                
                             </div>
