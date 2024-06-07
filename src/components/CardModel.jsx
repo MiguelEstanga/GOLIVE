@@ -43,15 +43,20 @@ const Container = styled.div`
     width:400px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
     border-radius:10px;
-    height:400px;
+    
     background-image: url(${(props) => props.bgFondo   });
     background-size: cover;
     padding:10px;
     background-position: center;
-   
+    
+    @media (max-width:600px) {
+        width:380px;
+        height:400px;
+        
+    }
     .btn_{
         margin-top:20px;
-}
+    }
     .img{
        
         height:100px;

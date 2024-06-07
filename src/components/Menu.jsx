@@ -19,6 +19,7 @@ export default function Menu() {
         getLanguage() .then(res => { 
                 //guarda el lenguaje en el local storage
             GetStorageObjet('language', res.data.data.languages )
+           
             setLanguages(res.data.data.languages )
         })
         .finally(() => setLoading(false))
@@ -65,7 +66,11 @@ export default function Menu() {
                                     <li  
                                         style={ {backgroundColor: `${ item.id === getStorage('lenguaje')? '#2e86c1' :'' }`  }}
                                         key={item.id}
-                                        onClick={() => handleChangeLanguage(item.id)}
+                                        onClick={() =>{
+                                             handleChangeLanguage(item.id)
+                                             console.log(item.prefix)
+                                             setStorage('prefix', item.prefix)
+                                        }}
                                     >
                                        
                                        

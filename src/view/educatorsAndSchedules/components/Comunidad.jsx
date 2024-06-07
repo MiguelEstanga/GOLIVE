@@ -1,6 +1,7 @@
 import { GetStorageObjet } from "../../../helper/LocalStorage"
 import { ContainerComunidadEvento, H2, Leyenda , Avatar , ContainerComunidad , text} from "./Styled"
 import { IoIosArrowForward } from "react-icons/io";
+import styled from "styled-components";
 export default function Comunidad({
     BorderColor ,
     TextColor,
@@ -15,8 +16,8 @@ export default function Comunidad({
         
     }
     return (
-       
-        <div style={Style.conatiner}>
+        <Container>
+        
              <ContainerComunidadEvento>
                 <div style={  Style.evento_text} >
                     <h2 style={text}> Comunidad </h2>
@@ -77,7 +78,7 @@ export default function Comunidad({
              
              <ContainerComunidadEvento>
                 <div style={Style.evento_text} >
-                    <h2  style={text} >Eventos</h2>
+                    <h2  style={text} >Proximas Sesiones</h2>
                     <div className="options">
                         <a
                             href="#options"
@@ -91,7 +92,7 @@ export default function Comunidad({
                 <div >
 
                     <ContainerComunidad
-                        imagenCart={require(`../../../asset/bg.jpg`) }
+                        imagenCart={require(`../../../${GetStorageObjet("schoolId")?.bg_btns}`) }
                     >
 
                         <div style={{
@@ -140,21 +141,32 @@ export default function Comunidad({
 
                 </div>
              </ContainerComunidadEvento>
-        </div>
+        </Container>
     )
 }
 
 
-
+const Container = styled.div`
+    
+        gap:20px;
+        width: 80%;
+        margin: auto;
+        height:  auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        
+        @media (max-width:600px) {
+             grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+             gap:70px;
+             width: 100vw;
+            pleace-items: center;
+            justify-content: center;
+            alining-items: center;
+        }
+`
 const Style = {
     conatiner :{
      
-        gap:'20px',
-        width: '80%',
-        margin: 'auto',
-        height:  "auto",
-        display: 'grid',
-        gridTemplateColumns: 'repeat(2, 1fr)',
         
     },
  
@@ -176,10 +188,6 @@ const Style = {
     container_comunidad_img :{
         width: '100%',
         height: '100%',
-        
-      
-       
-        border: 'solid 1px red',
     },
     h2:{
         textAlign: 'center',

@@ -42,11 +42,15 @@ background-image: url(${ props => props.bgimg });
     background-size: cover;
     background-repeat: no-repeat;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-    width: 500px;
+    width: 400px;
     height: 700px;
     border-radius: 10px;
     border: 1px solid ${ props => props.borderColor };
-    
+    @media (max-width:600px) {
+        width: 350px;
+        padding: 20px;
+        height: auto;
+    }
     margin-bottom: 40px;
     color: white;
     padding: 20px;
@@ -119,6 +123,13 @@ export const ContainerProgresoBar = styled.div`
   width: 400px;
   height: 20px;
   border-radius: 50px;
+     @media (max-width:600px) {
+        width:350px;
+        padding: 2px;
+        height: auto;
+    }
+  
+
 `
 
 export const Progreso = styled.div`
@@ -133,6 +144,11 @@ export const IndividualComentario = styled.div`
     margin-bottom: 20px;
     position: relative;
     width: 1200px;
+    height:auto;
+    @media (max-width:600px) {
+        width: 65%;
+        
+    }
    
 `
 export const IndividualComentarioText = styled.div`
@@ -216,8 +232,12 @@ export const OldComentarios = styled.div`
 `
 
 export const VideosSection = styled.div`
-    width: 50%;
-  height: 600px;
+    width: 60%;
+  height: 700px;
   border-radius: 8px;
   border: 4px solid ${ props => props.colorBorder };
+  @media (max-width:600px) {
+    width: 90%;
+    height: 300px;
+  }
 `

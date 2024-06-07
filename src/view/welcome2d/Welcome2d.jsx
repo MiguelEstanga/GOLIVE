@@ -7,9 +7,9 @@ import { useContext, useEffect, useState } from "react";
 import { endpoints } from "../../helper/Api";
 import ShouldeContext from "../../context/ShouldeContext";
 import  { LanguageContext } from "../../context/languageContext";
-import { GetStorageObjet, SetStorageObjet, setStorage } from "../../helper/LocalStorage";
+import { GetStorageObjet, SetStorageObjet, getStorage, setStorage } from "../../helper/LocalStorage";
 import Loading from "../../components/Loading";
-
+import lang from "../../helper/traduccion";
 export default function Welcome2d() {
   const [school ,setSchool] = useState([]);
   const [loading ,setLoading] = useState(true);
@@ -52,6 +52,8 @@ export default function Welcome2d() {
   useEffect( () => {
       setStorage('lenguaje', language)
       setEscuelas()
+      console.log( 'lenguaje ' , language )
+       
      // setSchedule()
   }, [language])
   return (
@@ -63,7 +65,7 @@ export default function Welcome2d() {
         <div className="container-welcome">
             <div className="container-titulo-welcome">
                 <Welcome>
-                    BIENVENIDO
+                    { lang( `${getStorage('prefix') ?? 'EN'}` , 'BIENVENIDO' )}
                 </Welcome>
                 <Subtitle>
                     Oran Wright

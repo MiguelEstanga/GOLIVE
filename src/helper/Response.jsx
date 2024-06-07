@@ -56,3 +56,9 @@ export async function  getFavoriteVideo({id_teacher, id_school, id_language})
     )
     return response;
 }
+
+export async function  SmartMoneyModule()
+{
+    const  response = await axios.get(`${endpoints.smartMoney}` )
+    return response;
+}

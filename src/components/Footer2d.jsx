@@ -10,7 +10,7 @@ export default function Footer2d( {
         mt={mt}
       >
         <div className="img-text">
-          <img width={'100%'} height={'40px'} src={require('../asset/footer.png')} alt="footer-logo" />
+          <img width={'100%'}  src={require('../asset/footer.png')} alt="footer-logo" />
         </div>
       </FoooterContainer>
     )

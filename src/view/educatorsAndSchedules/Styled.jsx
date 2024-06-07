@@ -21,30 +21,28 @@ export const Style = {
         "width": "100%",
         "height": "100%",
     },
-    inlive:{
-       
-        margin: '90px 10px',
-        display: 'flex',
-        flexDirection: 'column',
-        padding: '10px',
-        gap: '20px',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: 'auto',
-        height: 'auto',
-        padding:"50px",
-       
-    },
-   
-
 }
+
+//inlive container
+export const InLiveContainer = styled.div`
+        margin: '90px 10px';
+        display: 'flex';
+        flexDirection: 'column';
+        padding: '10px';
+        gap: '20px';
+        alignItems: 'center';
+        justifyContent: 'center';
+        width: 'auto';
+        height: 'auto';
+        padding:"50px";
+`
 
 export const EducatorsAndSchedulesContainer = styled.div`
         background-image: url(${ (props) => props.fullImage });
         background-position: center;
         background-size: cover;
         height: auto;
-
+        overflow-y: hidden;
         width: 100vw;
 `
 export const TableClases = styled.div`
@@ -55,6 +53,15 @@ export const TableClases = styled.div`
    background-position: center;
    background-size: cover;
     width: 100%;
+
+    @media (max-width:600px) {
+        border:none;
+        padding:0;
+        height: auto;
+        width: 100vw;
+       
+       
+    }
     
 `
 
@@ -87,7 +94,7 @@ export const Cronograma = styled.div`
 // contiene los dias de la semana de cada fila de educadores aqui se anida los did con el fin de que quede como un cronograma
 export const ContainerDias = styled.div`
     width: 100%;
- 
+   
     height: auto;
     display: flex;
     flex-direction: row;
@@ -100,31 +107,37 @@ export const ContainerDias = styled.div`
        
         width: 20%;
     }
-    .dias_semanas{
-        width: 80%;
+    .dias_semanas
+    {
+        width: 70%;
+        position: relative;
+        left: -100px;
         height: 20px;
-      
+       
         display: flex;
         
         flex-direction: row;
-       gap: 10px;
-        .data{
-            width: 150px;
-            height: 20px;
-           
-            display: grid;
-            position: relative;
-            p{
-                position: absolute;
-                bottom: 0;
-                width: 100%;
-                text-align: center;
-                font-size: 17px;
-                font-weight: bold;
-                color: #fff;
-              
+        gap: 10px;
+        .data
+        {
+                width: 150px;
                 height: 20px;
-            }
+                display: grid;
+                position: relative;
+                p{
+                    position: absolute;
+                    bottom: 0;
+                    width: 100%;
+                    text-align: center;
+                    font-size: 17px;
+                    font-weight: bold;
+                    color: #fff;
+                
+                    height: 20px;
+                }
+        }
+        @media (max-width:600px) {
+            display: none;
         }
     }
 `
@@ -163,5 +176,13 @@ export const Option = styled.div`
         justify-content: center;
         height: 16px;
         text-vertical-align: center;
+    }
+
+    @media (max-width:600px) {
+        font-size: 10px;
+       p{
+           font-size: 10px;
+           text-align: center;
+       }
     }
 `

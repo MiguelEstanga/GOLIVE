@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IndividualComentario, IndividualComentarioText } from '../styled';
 import { GetStorageObjet } from '../../../helper/LocalStorage';
 
 function Comments({ comments }) {
+   
     return (
         <>
-            {comments.map((_, index) => (
+            {comments.map((data, index) => (
                 <IndividualComentario    
                     
                     key={index}
@@ -19,8 +20,8 @@ function Comments({ comments }) {
                         colorBorder={GetStorageObjet("schoolId").cl_border}
                         bgimg={require(`../../../${ GetStorageObjet("schoolId").bg_btns }`)}   
                     >
-                        <h6>Tutor:</h6>
-                        <p>Lorem ipsu</p>
+                        <h6>Tutor: {data.user} </h6>
+                        <p>{data.comentarion}</p>
                        
                     </IndividualComentarioText>
                    

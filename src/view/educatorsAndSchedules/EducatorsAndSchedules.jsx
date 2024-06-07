@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import Menu from "./components/Menu";
 import SwiperProfesores from "./components/SwiperProfesores";
-import {   Option, Style , ContainerAvatars , Avatars , TableClases , EducatorsAndSchedulesContainer, ContainerDias, ContainerOptions} from "./Styled";
+import {   Option, Style , ContainerAvatars , Avatars , TableClases , EducatorsAndSchedulesContainer, ContainerDias, ContainerOptions, InLiveContainer} from "./Styled";
 import Footer2d from "../../components/Footer2d";
 import InLive from "./components/inLive";
 import Comunidad from "./components/Comunidad";
@@ -13,6 +13,7 @@ import { LanguageContext } from "../../context/languageContext";
 import { GetStorageObjet, getStorage } from "../../helper/LocalStorage";
 import { useNavigate } from "react-router-dom";
 import ModelSmartMoney from "../../components/ModelSmartMoney";
+import lang from "../../helper/traduccion";
 export default function EducatorsAndSchedules() 
 {
    
@@ -29,7 +30,14 @@ export default function EducatorsAndSchedules()
    const navegation = useNavigate();
 
    const dias = [7,1,2,3,4,5,6]
-   const dias_semanas =['Lunes','Martes','Miércoles','Jueves','Viernes' , 'Sábado','Domingo']
+   const dias_semanas =[ 
+     `${lang( `${getStorage('prefix') ?? 'EN'}` , 'Lunes' )}` ,
+     `${lang( `${getStorage('prefix') ?? 'EN'}` , 'Martes' )}` , 
+     `${lang( `${getStorage('prefix') ?? 'EN'}` , 'Miércoles' )}` ,
+     `${lang( `${getStorage('prefix') ?? 'EN'}` , 'Jueves' )}` ,
+     `${lang( `${getStorage('prefix') ?? 'EN'}` , 'Viernes' )}` , 
+     `${lang( `${getStorage('prefix') ?? 'EN'}` , 'Sábado' )}` , 
+     `${lang( `${getStorage('prefix') ?? 'EN'}` , 'Domingo' )}` ]
     
    //inicializa las categorias
    async function Categorias()
@@ -202,24 +210,26 @@ export default function EducatorsAndSchedules()
            </div>
            <div className="selector-session-foreing">
               <div  style={{ 
-                
-                width:'100%',
-                display:'flex',
-                flexDirection:'column',
-                alignItems:'center',
+                    width:'100%',
+                    display:'grid',
+                    gridTemplateColumns:'repeat(1,1fr)',
+                    gridTemplateRows:'20% auto',
+                 
+                    justifyContent:'center',
               }} >
-                <h2 style={Style.h2}>
-                    Vive ahora
+                <h2  style={{ color:'#fff', fontSize:'15px', margin:'0px' , textAlign:'center' , marginTop:'20px' }}>
+                    {
+                      lang( `${getStorage('prefix') ?? 'EN'}` , 'ViveAhora')
+                    }
                 </h2>
-                <div style={Style.inlive}>
+                <InLiveContainer>
                    
                     <InLive
                         borderColor={'#52be80'}
                         url_avatar={'https://d22yb2tbj8zopv.cloudfront.net/src/user/rvukovic.png'}
                     />
-
-                   
-                </div>
+                </InLiveContainer>
+                
               </div>
 
               <div style={{width:'100%'}} >

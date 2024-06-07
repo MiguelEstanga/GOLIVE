@@ -62,16 +62,17 @@ export const Comenzar = styled.button`
 export const FoooterContainer = styled.div`
     position: ${ (props) => props.position || 'absolute'};
     margin-top: ${(  props => props.mt || 'auto')};
+    background-color:transparent;
     bottom: 0;
     left: 0;
     display: flex;
     justify-content: center;
     width: 100%;
-    height: 100px;
-    
+    height: 200px;
+   
     img{
-    width: 500px;
-    height: 100px;
+        width: 400px;
+        height: 130px;
     }
     
 `

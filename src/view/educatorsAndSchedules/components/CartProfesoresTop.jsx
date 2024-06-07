@@ -3,7 +3,8 @@ import { Avatar, CartProfesoresTopContainer , TextData } from "./Styled";
 import { getProfesor } from "../../../helper/Response";
 import { useNavigate } from "react-router-dom";
 import { TeacherContext } from "../../../context/TeacherContext";
-
+import Star from "./Start";
+import { GetStorageObjet } from "../../../helper/LocalStorage";
 export default function CartProfesoresTop( {imagen_cart , color_resena  , colorBorder , avatar , idProfesor})
 {
     const [data , setData] = useState([])   
@@ -36,11 +37,11 @@ export default function CartProfesoresTop( {imagen_cart , color_resena  , colorB
               
             >
                 <TextData>
-                    Nombre del profesor
+                    {data?.user?.names}
                 </TextData>
                 
                 <div>
-                    Estrllitas
+                    <Star numero={5}  color={ `${GetStorageObjet('schoolId').color}` } />
                 </div>
                 <TextData
                     colorTexto={color_resena}

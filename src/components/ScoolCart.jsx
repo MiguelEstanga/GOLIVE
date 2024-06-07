@@ -4,6 +4,7 @@ import ShouldeContext from "../context/ShouldeContext";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { schedule } from "../helper/Response";
 import { GetStorageObjet, SetStorageObjet, getStorage } from "../helper/LocalStorage";
+import lang from "../helper/traduccion";
 
 export default function ScoolCart({color , image , titulo , logo_text , items}) 
 {
@@ -50,7 +51,7 @@ export default function ScoolCart({color , image , titulo , logo_text , items})
                
             </LogoContainer>
             <Comenzar onClick={ () => handleClick()} >
-                Comenzar
+                { lang( `${getStorage('prefix') ?? 'EN'}` , 'Comenzar' )}
             </Comenzar>
           
        </CartContainer>

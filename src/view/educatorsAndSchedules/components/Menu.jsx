@@ -19,34 +19,34 @@ export default function Menu({
 
     return (
        <MenuContainer>
-       <nav className="navbar-schedules">
-            {id.ecommerce && (
-                <>
-                    <div
-                        style={{ cursor: "pointer" }}
-                    onClick={ () => navegacion(`/educators-and-schedules`) } className="schedules-logo">
-                        <img src={require(`../../../${logo}`) } alt="social media logo" title="social media logo" />
-                    </div>
-                  
-                    <div className="schedules-actions">
-                        <div className="schedules-select">
-                            <select>
-                                <option value="">America/Bogota</option>
-                            </select>
-                            <button>Academia</button>
+        <nav className="navbar-schedules">
+                {id.ecommerce && (
+                    <>
+                        <div
+                            style={{ cursor: "pointer" }}
+                            onClick={ () => navegacion(`/educators-and-schedules`) } className="schedules-logo">
+                            <img src={require(`../../../${logo}`) } alt="social media logo" title="social media logo" />
                         </div>
-                        <div className="schedules-options">
-                            <IoHomeOutline
-                                style={{cursor: "pointer"}}
-                                onClick={() => navegacion(`/Welcome2d`)}
-                            />
-                            <MdOutlineNotifications />
-                            <RxExit />
+                    
+                        <div className="schedules-actions">
+                            <div className="schedules-select">
+                                <select>
+                                    <option value="">America/Bogota</option>
+                                </select>
+                                <button className="buttom_academia" >Academia</button>
+                            </div>
+                            <div className="schedules-options">
+                                <IoHomeOutline
+                                    style={{cursor: "pointer"}}
+                                    onClick={() => navegacion(`/Welcome2d`)}
+                                />
+                                <MdOutlineNotifications />
+                                <RxExit />
+                            </div>
                         </div>
-                    </div>
-                </>
-            ) }
-       </nav>
+                    </>
+                ) }
+        </nav>
        </MenuContainer>
     )
 }

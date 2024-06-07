@@ -3,10 +3,15 @@ import styled from "styled-components";
 export const MenuContainer = styled.div`
     
     display: flex;
-    
-     height: 150px;
-     width: 100vw;
+
+    height: 150px;
+    width: 100vw;
     color: white;
+    
+    @media (max-width: 700px) {
+        width: 100%;
+        padding: 0;
+    }
 `;
 
 // CartProfesoresTop
@@ -26,6 +31,8 @@ export const CartProfesoresTopContainer = styled.div`
     background-size: cover;
     background-position: center;
     opacity: 0.8;
+
+    
 `;
 
 export const TextData = styled.p`
@@ -77,6 +84,13 @@ export const ContainerComunidad = styled.div`
     display: flex;
     aling-items: center;
     justify-content: center;
+    
+    @media (max-width:600px) {
+        height: auto;
+        gap:20px;
+        width: 100%;
+        margin-top:center;
+    }
 `
 
 export const Leyenda = styled.div`
@@ -118,7 +132,13 @@ export const ContainerComunidadEvento = styled.div`
     background-image: url(${(props) => props.imagenCart});
     background-size: cover;
     background-position: center;
-
+    
+    @media (max-width:600px) {
+       
+        width: 100%;
+        margin-top:30px;
+        height: auto;
+    }
 
 `
 

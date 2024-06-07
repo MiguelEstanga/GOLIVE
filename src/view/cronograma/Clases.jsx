@@ -43,10 +43,14 @@ const ClaseContainer = styled.div`
     background-image: url( ${ props => props.bgCalendar } );
     background-size: cover;
     background-position: center;
+
    
     width: 140px;
-    height: 100px;
-
+    height: auto;
+    @media (max-width:600px) {
+        width: 100%;
+        height: auto;
+    }
     .text-container{
         width: 100%;
         height: 100%;
@@ -56,14 +60,19 @@ const ClaseContainer = styled.div`
         align-items: start;
        
         p{
-            font-height: 2.5px;
-            font-size: 9px;
+            
+            font-size: 11px;
             font-weight: 100;
             text-align: start;
             width: 100%;
             padding: 5px;
             color: #000;
-            margin-top: 10px;
+           
+
+            @media (max-width:600px) {
+                font-size: 10px;
+                margin-top: 5px;
+            }
         }
     }
 `

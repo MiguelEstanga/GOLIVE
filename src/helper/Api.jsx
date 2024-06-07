@@ -12,7 +12,9 @@ export const endpoints = {
     profesor:  `${Api.defaultUrl}user/`,
     review:    `${Api.defaultUrl}review`,
     categoria: `${Api.defaultUrl}school-category`,
-    favoriteVideo: `${Api.defaultUrl}lesson-by-teacher`,
+    favoriteVideo: `${Api.defaultUrl}/lesson-by-teacher`,
+    subida  : `${Api.defaultUrl}/upload`,
+    smartMoney: `${Api.defaultUrl}/get-video`,
 }
 
 

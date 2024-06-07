@@ -275,6 +275,13 @@ select:focus {
   gap: 10px;
 }
 
+@media (max-width: 700px) {
+  .selector-session-foreing{
+    grid-template-columns: 100%;
+   
+  }
+}
+
 .navbar-schedules{
   width: 100%;
   display: flex;
@@ -286,8 +293,11 @@ select:focus {
 }
 
 
+
+
 .navbar-schedules img { 
   width: 120px;
+  
 }
 
 .schedules-actions{
@@ -312,7 +322,32 @@ select:focus {
   font-weight: 500;
 }
 
+@media (max-width: 700px) {
+  .navbar-schedules{
+   
+    padding-left: 0;
+    padding-right: 0;
+    padding: 10px;
+  }
+  .navbar-schedules img { 
+    width: 90px;
+    
+  }
 
+  .schedules-actions{
+    display: flex;
+    gap: 1px;
+    width: 320px;
+    justify-content: center;
+    align-items: center;
+   
+  }
+  .schedules-actions .schedules-select select{
+    display: none;
+  }
+  
+ 
+}
 .schedules-actions .schedules-select select option{
   background-color: black;
 }
@@ -447,9 +482,6 @@ select:focus {
   border-bottom: 2px solid #007bff;
 }
 
-.smart-money-comments button{
-
-}
 
 
 .individual-comment{

@@ -5,6 +5,7 @@ import { useContext, useEffect , useState } from "react";
 import { getProfesor } from "../../helper/Response";
 import { TeacherContext } from "../../context/TeacherContext";
 import { useNavigate } from "react-router-dom";
+import { GetStorageObjet } from "../../helper/LocalStorage";
 export default function Cronograma({ children , name }) 
 {
     const [data , setData] = useState([])
@@ -21,7 +22,9 @@ export default function Cronograma({ children , name })
     },[])
     return (
             <CronogramaStyle>
-                <ContainerInfo>
+                <ContainerInfo
+                    bgb={ require(`../../${GetStorageObjet("schoolId")?.bg_btns}`)  }
+                >
                     <ContainerAvatar
                         onClick={() => {
                             setTeacher(data ?? {} ) 
@@ -56,11 +59,11 @@ export default function Cronograma({ children , name })
 
 const Style = {
     nombre:{
-        fontSize: '15px',
+        fontSize: '10px',
         fontWeiht: '100',
     },
     role:{
-        fontSize: '15px',
+        fontSize: '10px',
         fontWeiht: 'bold',
     },
     containerData:{
