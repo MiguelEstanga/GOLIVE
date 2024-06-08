@@ -10,7 +10,7 @@ function App() {
     <BrowserRouter>
       <Routes>
       <Route path="/cronograma" element={<Cronograma />} />
-        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/Welcome2d" element={<Welcome2d />} />
         <Route path="/educators-and-schedules" element={<EducatorsAndSchedules />} />
         <Route path="/on-live-page" element={<OnlivePage />} />

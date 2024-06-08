@@ -5,7 +5,7 @@ import { useContext, useEffect , useState } from "react";
 import { getProfesor } from "../../helper/Response";
 import { TeacherContext } from "../../context/TeacherContext";
 import { useNavigate } from "react-router-dom";
-import { GetStorageObjet } from "../../helper/LocalStorage";
+import { GetStorageObjet, SetStorageObjet } from "../../helper/LocalStorage";
 export default function Cronograma({ children , name }) 
 {
     const [data , setData] = useState([])
@@ -14,9 +14,9 @@ export default function Cronograma({ children , name })
     useEffect( () => {
         getProfesor(name)
         .then(res => { 
-           
+             
             setData(res.data.data)
-           
+            SetStorageObjet('teacher', res.data.data)
                
         })
     },[])
@@ -35,13 +35,13 @@ export default function Cronograma({ children , name })
                         <AvatarGeneric  
                             width={'100px'}
                             height={'100px'}
-                            avatar={data?.user?.image }
+                            avatar={GetStorageObjet('teacher')?.user?.image }
                         />
 
                         <div style={Style.containerData}>
                             <p style={Style.p}>
-                                <span style={Style.nombre} > {data?.user?.names ?? 'loading ...'} </span> <br/>
-                                <span style={Style.role} > {data?.role?.role_name ?? 'loading ...'} </span>
+                                <span style={Style.nombre} > {GetStorageObjet('teacher')?.user?.names ?? 'loading ...'} </span> <br/>
+                                <span style={Style.role} > {GetStorageObjet('teacher')?.role?.role_name ?? 'loading ...'} </span>
                             </p> 
                          
                         </div>    

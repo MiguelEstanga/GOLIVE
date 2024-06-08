@@ -44,6 +44,7 @@ export default function Welcome2d() {
       var metadata =  school.filter(data => data.language_id === language)
       SetStorageObjet('shoulde', metadata)
       setShoulde(metadata)
+      console.log(metadata)
     }catch(error){
       console.log(error);
     }

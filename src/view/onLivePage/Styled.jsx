@@ -73,7 +73,7 @@ export const StyledOnlivePage = styled.div`
 export const CardChat  = styled.div`
    
     width: 25%;
-    height: 100%;
+    height: 700px;
     .body{
         background-image: url( ${ (props) => props.imgChat } );
         background-size: cover;
@@ -260,13 +260,62 @@ export const Title = styled.h2`
 
 // contenido del chat
 export const ContainerChat = styled.div`
-   
-    height: 550px;
+    
+    height: 430px;
     width: 80%;
     margin: 0 auto;
     border-top : solid 1px #34975d;
     border-bottom : solid 1px #34975d;
     overflow-y: hidden;
+   
+    
+    .chat-comentarios{
+        height: auto;
+        width: 90%;
+        display: grid;
+        grid-template-columns: 10% 90%;
+        padding: 10px;
+        gap: 20px;
+        
+        border-radius: 10px;
+
+        .comentarios{
+            height: auto;
+            border-radius: 10px;
+            padding: 10px;
+            margin-right: 10px;
+            width: 94%;
+            font-size: 12px;
+            background-color: ${ props => props.bgChatUser ?? ''};
+            overflow-wrap: word-break;
+            color: white;
+            display: flex;
+            alinig-items: center;
+           
+
+           
+        }
+       
+    }   
+   
+
+`
+
+export const ContainerLike = styled.div`
+        
+        width: 90%;
+        margin: 5px auto;
+        height: 70px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .leyenda{
+            p{
+                font-size: 16px;
+                color: white;
+            }
+        }
+       
 `
 export const ContainerForm = styled.div`
     
@@ -286,14 +335,19 @@ export const ContainerForm = styled.div`
         bockground: black;
         border:none;
         background: ${  props => props.bg ?? ''};
+        color: white;
+        padding: 10px;
     }
     button{
-        bottom: -20px;
+        bottom: -10px;
         border:none;
         border-radius: 10px;
         width:100px;
-        height:50px;
+        height:30px;
         position: absolute;
+        background-img: url( ${ (props) => props.btnImg  ?? ""} );
+        background-size: cover;
+        background-position: center;
     }
 `
 

@@ -1,13 +1,13 @@
 import Menu from "../educatorsAndSchedules/components/Menu";
-import {ContainerForm , CardChat, ContainerChat, LiveEducator, Masvisto, Upload,StyledOnlivePage, Title, VIDEOS, OptionVideos } from "./Styled";
+import {ContainerForm ,ContainerLike, CardChat, ContainerChat, LiveEducator, Masvisto, Upload,StyledOnlivePage, Title, VIDEOS, OptionVideos } from "./Styled";
 import ReactPlayer from 'react-player'
 import {imagenes , foring_exchange} from "../../helper/test";
-
+import lang from '../../helper/traduccion'
 import Videos from "./Videos";
 import Footer2d from '../../components/Footer2d'
 import AvatarGlobal  from "../../components/Avatar";
 import Seguir from "../../components/Seguir";
-import { MdFileUpload } from "react-icons/md";
+
 import { useContext, useEffect, useState } from "react";
 import { GetStorageObjet, getStorage } from "../../helper/LocalStorage";
 import { FaUserLarge } from "react-icons/fa6";
@@ -22,6 +22,9 @@ import { FaUpload } from "react-icons/fa";
 import { Api, endpoints } from "../../helper/Api";
 import axios from "axios";
 import Loading from "../../components/Loading";
+
+import AvatarGeneric from "../../components/AvatarGeneric";
+
 export default function OnlivePage() {
     const [alto , setAlto] = useState(250)
     const [show , setShow] = useState(false)
@@ -31,31 +34,39 @@ export default function OnlivePage() {
     const [videoOption, setVideosOption]  = useState(1)
     const [loading, setLoading] = useState(false)
     const handleUpload = () => {
-        console.log(form)
+        setLoading(true)
+        const data  = new  FormData()
+      
+        console.log(form.video)
         console.log(teacher.teacher.teacher_id)
         console.log(GetStorageObjet('schoolId').id)
+        console.log(getStorage('lenguaje'))
+        console.log('formadata')
 
-        const data  = new  FormData()
-        setLoading(true)
-        data.append('video', form.video)
+        console.log(data)
+        data.append('name', form.video)
         data.append('teacher_id', teacher.teacher.teacher_id)
         data.append('school_id', GetStorageObjet('schoolId').id)
         data.append('language_id', getStorage('lenguaje'))
 
-        axios.post(`${endpoints.subida}`, {
-            body: data,
-           
+        axios.post(`${endpoints.subida}`, data , {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
         })
         .then((res) => {
           
             const uploadProgress = res.data.uploadProgress; // Assuming progress data is in res.data
-            console.log('Upload progress:', uploadProgress);
+            console.log(uploadProgress)
             console.log(res)
         })
         .catch((err) => {
             console.error('error', err)
         })
-        .finally(() => setLoading(false))
+        .finally(() => {
+            setLoading(false)
+            console.log('Upload finished')
+        })
        
 
     }
@@ -66,10 +77,7 @@ export default function OnlivePage() {
              GetStorageObjet('schoolId').id,
              getStorage('lenguaje')
         )
-        
-        if(response.status === 200){
-            setVideos([])
-        }
+        console.log(response.data)
         setVideos(response.data)
        
     }
@@ -111,11 +119,36 @@ export default function OnlivePage() {
                 <CardChat imgChat={require(`../../${GetStorageObjet('schoolId')?.bg_btns}`)} >
                   <div className="body">
                     <Title>STREAM CHAT</Title>
-                    <ContainerChat>
-                        
+                    <ContainerChat
+                        bgChatUser={GetStorageObjet('schoolId').cl_backg}
+                    >
+                        <div className="chat-comentarios">
+                           <AvatarGeneric
+                                width={'40px'}
+                                height={'40px'}
+                           />
+                           <div className="comentarios">
+                              <p>
+                              ggg
+                              </p>  
+                            
+                           </div>
+                        </div>
+                       
                     </ContainerChat>
+                    <ContainerLike>
+                        <div className="leyenda">
+                            <p  style={{color:'white' , fontSize:'14px'}} >
+                                Te gusta lo que ves ?
+                            </p>
+                        </div>
+                        <div className="botones">
+
+                        </div>
+                    </ContainerLike>
                     <ContainerForm
-                        bg={GetStorageObjet('schoolId').color}
+                        btnImg={require(`../../${GetStorageObjet('schoolId')?.bg_btns}`)}
+                        bg={GetStorageObjet('schoolId').cl_backg}
                     >
                         <input type="text" />
                         <button>Send</button>
@@ -168,7 +201,7 @@ export default function OnlivePage() {
                      >
                         Upload
                     </button>
-                    <input hidden id="fileUload" type="file" accept="video/*" onChange={ (event) => {
+                    <input hidden id="fileUload" type="file" accept="video/*" name="name" onChange={ (event) => {
                         setForm({...form, video:event.target.files[0]  })
                         console.log(form)
                     } }  />
@@ -233,7 +266,7 @@ export default function OnlivePage() {
                 </h2>
                 <div className="ver_todos" onClick={handleClick}>
                     {
-                        show ? 'See Less' :'See more' 
+                        show ? 'See less' : lang( getStorage('lenguaje'), 'See more') 
                     }
                 </div>
 
@@ -254,14 +287,7 @@ export default function OnlivePage() {
                         borderColor={'#52be80'}
                         url_avatar={'https://d22yb2tbj8zopv.cloudfront.net/src/user/rvukovic.png'}
                      />
-                      <InLive
-                        borderColor={'#52be80'}
-                        url_avatar={'https://d22yb2tbj8zopv.cloudfront.net/src/user/rvukovic.png'}
-                     />
-                      <InLive
-                        borderColor={'#52be80'}
-                        url_avatar={'https://d22yb2tbj8zopv.cloudfront.net/src/user/rvukovic.png'}
-                     />
+                    
                 </div>
             </LiveEducator>
             <Footer2d 

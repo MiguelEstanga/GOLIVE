@@ -1,4 +1,9 @@
+import { useEffect , useState} from "react";
+import { getProfesor } from "../helper/Response";
 import styled from "styled-components";
+import { GetStorageObjet, SetStorageObjet } from "../helper/LocalStorage";
+import { useNavigate } from "react-router-dom";
+
 export default function AvatarGeneric({ name, avatar, width ,height }) 
 {
   return (
@@ -6,6 +11,47 @@ export default function AvatarGeneric({ name, avatar, width ,height })
             <img   src={avatar ?? require("../user/loading.jpeg")}  />
         </Container>    
     )
+}
+
+export const Avatar2 = ({id})=>{
+
+
+  const [data , setData] = useState({})
+  const navegacion = useNavigate()
+  useEffect(  function(){
+
+    getProfesor(id)
+      .then(res => {
+        setData(res.data.data.user)
+      })
+  } ,[] ) 
+   
+  return (
+      <div
+        onClick={() => {
+          SetStorageObjet('teacher', data)
+          
+          navegacion('/on-live-page')
+        }}
+        style={ 
+
+          {
+            cursor: 'pointer',
+          } 
+        }
+      > 
+                                  
+          <img width={'70px'} 
+            src={data.image}
+           
+            style={{
+                borderRadius: '50%',
+            }} 
+          />
+
+    
+      </div>
+  )
 }
 
 const Container = styled.div`

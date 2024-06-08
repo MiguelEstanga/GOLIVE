@@ -21,8 +21,9 @@ import { AiOutlineDislike } from "react-icons/ai";
 import Menu from "../educatorsAndSchedules/components/Menu";
 import { useEffect, useState } from "react";
 import Loading from "../../components/Loading";
-import { SmartMoneyModule } from "../../helper/Response";
+import { SmartMoneyModule, getNextVideo } from "../../helper/Response";
 import ReactPlayer from "react-player";
+import axios from "axios";
 function SmartMoney()
 {
     const data = [1,2,3,4,5,6,7]
@@ -38,12 +39,15 @@ function SmartMoney()
             const response = await SmartMoneyModule()
             console.log(response.data.data)
             setVideoSmartMoney(response.data.data)
+            setLevel(response.data.level)
+          
         }catch(error){
             console.log(error)
         }
         finally{
             setLoading(false)
             console.log(videoSmartMoney)
+            console.log('level' , level)
         }
        
     }
@@ -63,7 +67,16 @@ function SmartMoney()
         if(level > videoSmartMoney.length ) {
             console.log('no hay mas')
         }else{
-            setLevel(level + 1)
+            setLoading(true)
+            getNextVideo('next', `${level}`)
+            .then((res) => {
+                console.log(res.data.level)
+                setLevel(res.data.level)
+            }).catch((err) => {
+                console.log(err)
+            }).finally(() => {
+                setLoading(false)
+            })
         }
         
     }
@@ -72,7 +85,16 @@ function SmartMoney()
         if(level === 1) {
             console.log('no hay mas')
         }else{
-            setLevel(level - 1)
+            setLoading(true)
+            getNextVideo('previous', `${level}`)
+            .then((res) => {
+                console.log(res.data.level)
+                setLevel(res.data.level)
+            }).catch((err) => {
+                console.log(err)
+            }).finally(() => {
+                setLoading(false)
+            })
         }
     }
     const handleClik = () => {

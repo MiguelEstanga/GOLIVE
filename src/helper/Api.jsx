@@ -13,8 +13,9 @@ export const endpoints = {
     review:    `${Api.defaultUrl}review`,
     categoria: `${Api.defaultUrl}school-category`,
     favoriteVideo: `${Api.defaultUrl}/lesson-by-teacher`,
-    subida  : `${Api.defaultUrl}/upload`,
-    smartMoney: `${Api.defaultUrl}/get-video`,
+    subida  : `${Api.defaultUrl}upload`,  
+    smartMoney: `${Api.defaultUrl}get-video`,
+    nexVideo: `${Api.defaultUrl}next-video`,
 }
 
 

@@ -6,12 +6,13 @@ import { getLanguage } from "../helper/Response";
 import { LanguageContext } from "../context/languageContext";
 import { GetStorageObjet, getStorage, setStorage } from "../helper/LocalStorage";
 import Loading from "./Loading";
+import { useNavigate } from "react-router-dom";
 export default function Menu() {
     const [lenguaje , setLenguaje] = useState(false)
     const [languages , setLanguages] = useState([])
     const [loading ,setLoading] = useState(true);
     const { setLanguage } = useContext(LanguageContext)
-
+    const navegacion = useNavigate()
     //setea el lenguaje de la pagina
     function handleChange() {
         setLenguaje(!lenguaje);
@@ -100,7 +101,12 @@ export default function Menu() {
                       <FaLanguage size={30} color= "#626567" />
                     </div>
               </ItemMenuCircular>
-              <ItemMenuCircular>
+              <ItemMenuCircular
+                onClick={() => {
+                    localStorage.clear();
+                  navegacion('/login')
+                }}
+              >
                     <div style={{ "height" :"30px" , "width" : "30px" , 'margin': 'auto'}}>
                         <RiLogoutBoxRLine
                             size={30}

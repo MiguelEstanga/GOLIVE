@@ -20,13 +20,14 @@ export default function EducatorsAndSchedules()
   
    const [School , setSchool] = useState([])
    const [profesoresTop , setProfesoresTop] = useState([])
+   const [proximasClases , setProximasClases] = useState([])
    const [option , setOption] = useState([
        {id:1, title:'ALL SECTIONS'},
    ]);
    const [selected, setSelected] = useState(0);
 
    const {language} = useContext(LanguageContext);
-   const {schoolId,shoulde,setSchoolId } = useContext(ShouldeContext)
+   const {schoolId, shoulde, setSchoolId } = useContext(ShouldeContext)
    const navegation = useNavigate();
 
    const dias = [7,1,2,3,4,5,6]
@@ -82,7 +83,6 @@ export default function EducatorsAndSchedules()
 
     useEffect(() => { 
             Categorias();
-
             //llamamos al top de profesores
             review({
                 schoolId: schoolId.id,
@@ -93,15 +93,16 @@ export default function EducatorsAndSchedules()
                     setProfesoresTop(res?.data?.data)
                 }
             )
-          
      } , [])
 
     useEffect(() => {
+       
         //filtramos los sheulder para que no se repitan los profesores
         let filteredSchools =[];
         if(selected === 0){
             //filtramos por todas las escuelas
              filteredSchools = shoulde?.filter( (data) => data.school_id === schoolId.id   );
+             setProximasClases(filteredSchools.slice(0,4))
         }else{
             //filtramos por categorias
             filteredSchools = shoulde?.filter( (data) => data.school_id === schoolId.id  && data.category_id === selected  );
@@ -153,7 +154,7 @@ export default function EducatorsAndSchedules()
           // res.diasOrdenados = orden(res.diasOrdenados)
         })
         setSchool(result)
-        console.log('test')
+        console.log('result')
         console.log(result)
     } , [selected])
 
@@ -313,7 +314,7 @@ export default function EducatorsAndSchedules()
                 TextColor={ GetStorageObjet("schoolId")?.color }
                 bgImgen={ GetStorageObjet("schoolId")?.bg_commun }
                 academiaImg={ GetStorageObjet("schoolId")?.image }
-              
+                nextClases={proximasClases}
            />
            <Footer2d
                position={'relative'}

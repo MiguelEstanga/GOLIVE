@@ -62,3 +62,12 @@ export async function  SmartMoneyModule()
     const  response = await axios.get(`${endpoints.smartMoney}` )
     return response;
 }
+
+export async function  getNextVideo(action , level)
+{
+    const data = new FormData()
+    data.append('action', action)
+    data.append('level', level)
+    const  response = await axios.put(`${endpoints.nexVideo}`, {  action, level })
+    return response;
+}

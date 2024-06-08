@@ -2,11 +2,13 @@ import { GetStorageObjet } from "../../../helper/LocalStorage"
 import { ContainerComunidadEvento, H2, Leyenda , Avatar , ContainerComunidad , text} from "./Styled"
 import { IoIosArrowForward } from "react-icons/io";
 import styled from "styled-components";
+import {  Avatar2 } from "../../../components/AvatarGeneric"
 export default function Comunidad({
     BorderColor ,
     TextColor,
     bgImgen,
-    academiaImg
+    academiaImg,
+    nextClases
 }) {
     const text = {
         color: TextColor,
@@ -106,16 +108,17 @@ export default function Comunidad({
                             justifyContent: 'space-between',
                             padding:'10px',
                         }} >
-                            <div>
-                                
-                                <img width={'70px'} src="https://d22yb2tbj8zopv.cloudfront.net/src/user/rvukovic.png" 
-                                alt="img" style={{
-                                    borderRadius: '50%',
-                                }} 
-                                 />
+                            {
+                                nextClases?.map( (res , index) => (
+                                   <Avatar2
+                                     key={index}
+                                     id={res.teacher_id}
+                                   />
 
-                               
-                            </div>
+                                ) )
+                            }
+                       
+                          
                            
                             <div style={{
                                 width:'30px',
