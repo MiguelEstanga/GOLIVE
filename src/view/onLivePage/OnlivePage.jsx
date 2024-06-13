@@ -5,8 +5,7 @@ import lang from '../../helper/traduccion'
 import Footer2d from '../../components/Footer2d'
 import AvatarGlobal  from "../../components/Avatar";
 import Seguir from "../../components/Seguir";
-import { AiOutlineLike } from "react-icons/ai";
-import { AiOutlineDislike } from "react-icons/ai";
+
 import {  useEffect, useState } from "react";
 import { GetStorageObjet, getStorage } from "../../helper/LocalStorage";
 import { FaUserLarge } from "react-icons/fa6";
@@ -23,13 +22,13 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { BsPeopleFill } from "react-icons/bs";
 import LikeDislike from "../../components/LikeDislike";
 export default function OnlivePage() {
-    const [alto , setAlto] = useState(250)
+    const [alto ] = useState(250)
     const [show , setShow] = useState(false)
 
     const [videos , setVideos] = useState([])
     const [form , setForm] = useState({})
     const [videoOption, setVideosOption]  = useState(1)
-    const [loading, setLoading] = useState(false)
+    const [loading] = useState(false)
   
     const [url , setUrl] = useState('https://lifeontop.s3.amazonaws.com/binary+edge_spanish.mp4')
     const [like, setLike] = useState(1)
@@ -51,7 +50,7 @@ export default function OnlivePage() {
                 logo={GetStorageObjet('school')?.image}
                  color={ GetStorageObjet("school")?.cl_text}
             /> 
-                <ModulesLeyenda>
+                    <ModulesLeyenda>
                             <div style={ { justifyContent:'flex-end'} } >
                                  <RxHamburgerMenu  color={GetStorageObjet("school")?.color}  size={15} />  Modules
                             </div>

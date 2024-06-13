@@ -1,9 +1,9 @@
 import { useEffect , useState} from "react";
-import { getProfesor, profesoresTest } from "../helper/Response";
+import {  profesoresTest } from "../helper/Response";
 import styled from "styled-components";
-import { GetStorageObjet, SetStorageObjet } from "../helper/LocalStorage";
+
 import { useNavigate } from "react-router-dom";
-import { profesor } from "../view/educatorsAndSchedules/http";
+
 
 export default function AvatarGeneric({ name, avatar, width ,height }) 
 {
