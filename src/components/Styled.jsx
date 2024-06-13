@@ -32,17 +32,18 @@ export const LogoContainer = styled.div`
     align-items: end;
 `
 
-export const LogoScool = styled.img`
-border:solid 1px red;
+export const LogoScool = styled.div`
+
     width: ${props => props.width || '30%'};
     height: ${props => props.height || '30%'};
     border-radius: ${props => props.borderRadius || '20px'};
     z-index: '50000000';
    
     @media (max-width: 768px) {
-        width: 180px;
-        height: 100px;
-        border:solid 1px red;
+        padding:10px;
+        width: 120px;
+        height: 70px;
+       
     }
 `
 
