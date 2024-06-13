@@ -44,7 +44,7 @@ export default function SwiperProfesores({
     swiperRef.slideTo(index - 1, 0);
   };
 
-  
+   
   return (
     <>
       <Swiper

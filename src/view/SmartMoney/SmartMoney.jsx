@@ -85,11 +85,11 @@ function SmartMoney()
     } , [ level   ] ) 
     return(
         <SmartMoneyContainer
-            bgimg={require(`../../${GetStorageObjet('schoolId').background_full}`)}
+            bgimg={require(`../../${GetStorageObjet('school').background_full}`)}
         >
              <Menu
-                color={ GetStorageObjet("schoolId")?.cl_border}
-                logo={ GetStorageObjet("schoolId")?.image }
+                color={ GetStorageObjet("school")?.cl_border}
+                logo={ GetStorageObjet("school")?.image }
             />
            {loading && <Loading/>}
          
@@ -99,7 +99,7 @@ function SmartMoney()
             </SmartMoneyTitle>
             
             <SmartMoneySection>
-                    <VideosSection colorBorder={GetStorageObjet('schoolId').cl_border}>
+                    <VideosSection colorBorder={GetStorageObjet('school').cl_border}>
                         {
                             videoSmartMoney?.length > 0 ? ( 
                                 <ReactPlayer
@@ -115,15 +115,15 @@ function SmartMoney()
                     </VideosSection>
                    
                     <ProgressBarContainer
-                         bgimg={require(`../../${GetStorageObjet('schoolId').bg_educ}`)}
-                         borderColor = {GetStorageObjet('schoolId').cl_border}
+                         bgimg={require(`../../${GetStorageObjet('school').bg_educ}`)}
+                         borderColor = {GetStorageObjet('school').cl_border}
                     >
                         <h2>My Progress {progreso }%</h2>
                             <p className="lessons-p">{level} de {videoSmartMoney.length} lessons</p>
                             <ContainerProgresoBar
-                                colorContainer={GetStorageObjet('schoolId').cl_backg}
+                                colorContainer={GetStorageObjet('school').cl_backg}
                             >
-                                <Progreso  progreso={ progreso } colorProgreso={GetStorageObjet('schoolId').color} />
+                                <Progreso  progreso={ progreso } colorProgreso={GetStorageObjet('school').color} />
                             </ContainerProgresoBar>
                           
                             <div className="progress-class">
@@ -171,14 +171,14 @@ function SmartMoney()
                    
             </SmartMoneySection>
             <PreguntasYComentarios
-                colorBorder={GetStorageObjet('schoolId').cl_border ?? "#fff"}
+                colorBorder={GetStorageObjet('school').cl_border ?? "#fff"}
             >
                  <div
                     onClick={() => setQuestionsSelected(1)}
                     style={
                         {cursor:"pointer" ,   
-                        borderBottom: questionsSelected ===1 ? `solid 6px ${GetStorageObjet('schoolId').color} ` :"",
-                        color: questionsSelected ===1 ? GetStorageObjet('schoolId').color : "#fff"
+                        borderBottom: questionsSelected ===1 ? `solid 6px ${GetStorageObjet('school').color} ` :"",
+                        color: questionsSelected ===1 ? GetStorageObjet('school').color : "#fff"
                     }}
                     className="comments">
                     COMMENT
@@ -188,8 +188,8 @@ function SmartMoney()
                      
                     style={
                         {cursor:"pointer" ,   
-                        borderBottom: questionsSelected ===2 ? `solid 6px ${GetStorageObjet('schoolId').color} ` :""
-                            , color: questionsSelected ===2 ? GetStorageObjet('schoolId').color : "#fff"
+                        borderBottom: questionsSelected ===2 ? `solid 6px ${GetStorageObjet('school').color} ` :""
+                            , color: questionsSelected ===2 ? GetStorageObjet('school').color : "#fff"
                        }}
                     className="questions">
                     DOUBTS
@@ -199,11 +199,11 @@ function SmartMoney()
                 <CustomInput
                     type="text"
                     onChange={(e) => setInputFile(e.target.value)}
-                    colorInput={GetStorageObjet('schoolId').cl_border}
+                    colorInput={GetStorageObjet('school').cl_border}
                 />
                 <BTN
                     onClick={ () => handleClik()  }
-                    bgimg={require(`../../${GetStorageObjet('schoolId').bg_btns}`)}
+                    bgimg={require(`../../${GetStorageObjet('school').bg_btns}`)}
                 >
                     SEND
                 </BTN>

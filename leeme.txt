@@ -1,0 +1,6 @@
+Configuracion del proyecto 
+
+1. Instale las dependencias con npm install
+2. Ejecute el proyecto con npm start 
+2. en la seccion de metadata encontrara los datos de pruebas que se estan usando en sustitucion del backend de la aplicacion
+3. en helper/Api.jsx 

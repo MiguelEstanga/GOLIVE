@@ -4,7 +4,7 @@ import { GetStorageObjet } from "../helper/LocalStorage";
 export default function Seguir() {
     return (
        <StyledButton
-       fullImage={require(`../${GetStorageObjet("schoolId").bg_btn_follow}`)}
+       fullImage={require(`../${GetStorageObjet("school").bg_btn_follow}`)}
        >
             <FcLike  />   Follow
        </StyledButton>

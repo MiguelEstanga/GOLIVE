@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Containerflex ,  ItemMenuCircular,  MenuContainer } from "./Styled";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import { FaLanguage } from "react-icons/fa";
-import { getLanguage } from "../helper/Response";
+
 import { LanguageContext } from "../context/languageContext";
 import { GetStorageObjet, getStorage, setStorage } from "../helper/LocalStorage";
 import Loading from "./Loading";

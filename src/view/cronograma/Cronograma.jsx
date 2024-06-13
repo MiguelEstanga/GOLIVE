@@ -23,7 +23,7 @@ export default function Cronograma({ children , name })
     return (
             <CronogramaStyle>
                 <ContainerInfo
-                    bgb={ require(`../../${GetStorageObjet("schoolId")?.bg_btns}`)  }
+                    bgb={ require(`../../${GetStorageObjet("school")?.bg_btns}`)  }
                 >
                     <ContainerAvatar
                         onClick={() => {

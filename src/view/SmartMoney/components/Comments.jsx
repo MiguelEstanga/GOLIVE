@@ -17,8 +17,8 @@ function Comments({ comments }) {
                     </div>
 
                     <IndividualComentarioText
-                        colorBorder={GetStorageObjet("schoolId").cl_border}
-                        bgimg={require(`../../../${ GetStorageObjet("schoolId").bg_btns }`)}   
+                        colorBorder={GetStorageObjet("school").cl_border}
+                        bgimg={require(`../../../${ GetStorageObjet("school").bg_btns }`)}   
                     >
                         <h6>Tutor: {data.user} </h6>
                         <p>{data.comentarion}</p>

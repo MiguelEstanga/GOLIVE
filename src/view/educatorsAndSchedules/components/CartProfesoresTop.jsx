@@ -49,7 +49,7 @@ export default function CartProfesoresTop( {imagen_cart , color_resena  , colorB
                 <div>
                     <Star 
                         numero={5}  
-                        color={ `${GetStorageObjet('schoolId').color}` } 
+                        color={ `${GetStorageObjet('school').color}` } 
                     />
                 </div>
                 <TextData

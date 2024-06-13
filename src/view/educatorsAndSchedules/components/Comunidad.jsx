@@ -42,7 +42,7 @@ export default function Comunidad({
                                   display:'flex',
                                   justifyContent: 'center',
                               }}>
-                                  <img width={'130px'} src={require(`../../../${GetStorageObjet("schoolId")?.image ?? ''}`)} alt="img"  />
+                                  <img width={'130px'} src={require(`../../../${GetStorageObjet("school")?.image ?? ''}`)} alt="img"  />
                               </div>
                           </div>
   
@@ -51,7 +51,7 @@ export default function Comunidad({
                       <ContainerComunidad
                           borderColor={BorderColor}
                           borderRadius={'0 30px 30px 0'}
-                          imagenCart={require(`../../../${GetStorageObjet("schoolId")?.bg_commun}`) }
+                         imagenCart={require(`../../../${GetStorageObjet("school")?.bg_commun}`) }
                       >
                           <div style={Style.container_text_ir}>
                               <H2>
