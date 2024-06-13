@@ -39,7 +39,7 @@ export const StyledOnlivePage = styled.div`
         margin: 0 auto;
         display: grid;
         margin-top: 5px;
-        gap: 10px;
+        gap: 40px;
         display: flex;
         pleace-content: center;
         pleace-items: center;

@@ -1,40 +1,36 @@
 import Menu from "../educatorsAndSchedules/components/Menu";
 import {ContainerForm ,ContainerLike, CardChat, ContainerChat, LiveEducator, Masvisto, Upload,StyledOnlivePage, Title, VIDEOS, OptionVideos, ModulesLeyenda } from "./Styled";
 import ReactPlayer from 'react-player'
-import {imagenes , foring_exchange} from "../../helper/test";
 import lang from '../../helper/traduccion'
-import Videos from "./Videos";
 import Footer2d from '../../components/Footer2d'
 import AvatarGlobal  from "../../components/Avatar";
 import Seguir from "../../components/Seguir";
-
-import { useContext, useEffect, useState } from "react";
+import { AiOutlineLike } from "react-icons/ai";
+import { AiOutlineDislike } from "react-icons/ai";
+import {  useEffect, useState } from "react";
 import { GetStorageObjet, getStorage } from "../../helper/LocalStorage";
 import { FaUserLarge } from "react-icons/fa6";
 import { FaShareAlt } from "react-icons/fa";
 import InLive from "../educatorsAndSchedules/components/inLive";
-import { TeacherContext } from "../../context/TeacherContext";
-import { getFavoriteVideo } from "../../helper/Response";
 import { FaFileUpload } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import { CgCalendarDates } from "react-icons/cg";
 import { FaUpload } from "react-icons/fa";
-import { Api, endpoints } from "../../helper/Api";
-import axios from "axios";
 import Loading from "../../components/Loading";
 import { videoTest } from "../../metadata/vide";
 import AvatarGeneric from "../../components/AvatarGeneric";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { BsPeopleFill } from "react-icons/bs";
+import LikeDislike from "../../components/LikeDislike";
 export default function OnlivePage() {
     const [alto , setAlto] = useState(250)
     const [show , setShow] = useState(false)
-    //const [teacher , setTeacher] = useState({})
+
     const [videos , setVideos] = useState([])
     const [form , setForm] = useState({})
     const [videoOption, setVideosOption]  = useState(1)
     const [loading, setLoading] = useState(false)
-    const {teacher} = useContext(TeacherContext)
+  
     const [url , setUrl] = useState('https://lifeontop.s3.amazonaws.com/binary+edge_spanish.mp4')
     const [like, setLike] = useState(1)
     useEffect(() => {     
@@ -138,7 +134,7 @@ export default function OnlivePage() {
                             </p>
                         </div>
                         <div className="botones">
-
+                            <LikeDislike/>
                         </div>
                     </ContainerLike>
                     <ContainerForm

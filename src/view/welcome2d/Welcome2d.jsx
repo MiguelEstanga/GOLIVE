@@ -4,15 +4,15 @@ import { DivContainer, Welcome , Subtitle, ContainerScool } from "./Styled";
 import Menu from "../../components/Menu";
 //import {escuelas, getschedule} from "../../helper/Response";
 import { useContext, useEffect, useState } from "react";
-import { endpoints } from "../../helper/Api";
-import ShouldeContext from "../../context/scheduleContext";
+
+
 import  { LanguageContext } from "../../context/languageContext";
-import { GetStorageObjet, SetStorageObjet, getStorage, setStorage } from "../../helper/LocalStorage";
+import { getStorage } from "../../helper/LocalStorage";
 import Loading from "../../components/Loading";
 import lang from "../../helper/traduccion";
 
 import { escuelas } from "../../metadata/escuelas";
-import Alert from "../../components/Alerta";
+//import Alert from "../../components/Alerta";
 
 export default function Welcome2d() {
   const [school ,setSchool] = useState([]);
