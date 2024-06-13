@@ -35,7 +35,7 @@ export default function AvatarGlobal({ img, colorBorder  , data , shouData=true 
         <img width={'100%'} src={img} style={{ borderRadius:'50%' }}  />  
         </Avatar>   
         {
-            shouData == true ? (
+            shouData === true ? (
                 <Data>
                     <p style={Style.nombre} > {data?.nombre ?? 'nombre'}  </p>
                     <h2 style={Style.h2} >{data?.profesion ?? 'profesion'}</h2>
