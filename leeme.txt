@@ -3,4 +3,78 @@ Configuracion del proyecto
 1. Instale las dependencias con npm install
 2. Ejecute el proyecto con npm start 
 2. en la seccion de metadata encontrara los datos de pruebas que se estan usando en sustitucion del backend de la aplicacion
-3. en helper/Api.jsx 
+3. en helper/Api.jsx linea 4 se debe poner la ruta de del servidor pin si no tiene dns especificando la ruta de la Api
+4. en helper/Api.jsx linea 7 se debe colocar las enpoint de la api 
+5. en helper/response.jsx estan las funciones que llaman a a la api despues de eso se debe ir las rutas dinamicas 
+6. rutas  dinamicas 
+    view/educatosAndSchedules.jsx 
+    view/educatosAndSchedules/components/Calendario.jsx -> renderiza el calanderio 
+    view/educatosAndSchedules/components/styles.jsx -> estilos del calanderio y demas componentes
+    view/educatosAndSchedules/Styles.jsx estilos de educatosAndSchedules.jsx
+
+    view/Login/Login.jsx -> renderiza el login
+    view/onlivePage/OnLivePage.jsx -> renderiza el onlivePage
+    view/onlivePage/styles.jsx -> estilos del onlivePage
+    view/onlivePage/components/styles.jsx -> estilos de los componentes del onlivePage
+    view/onlivePage/components/ -> aqui se encuentran los componentes del onlivePage
+    view/SmartMoney/SmartMoney.jsx -> renderiza el SmartMoney
+    view/SmartMoney/styles.jsx -> estilos del SmartMoney
+    view/SmartMoney/components/ -> estilos necesarios para el SmartMoney
+
+    recomendacion guardar todo en localstorage 
+    src/helper/localstorage.js -> aqui hay 4 funciones SetLocalStorageObject( Guarda los objetos necesarios en localstorage)
+    src/helper/localstorage.js -> aqui hay 4 funciones GetLocalStorageObject( Recupera los objetos necesarios de localstorage)
+    src/helper/localstorage.js -> aqui hay 4 funciones setStorage( guarda meetadata en localstorage como lenguaje prefijos para los idimas etc )
+
+7. view/welcome2d/components/ScoolCart  -> renderiza el scool cart aqui se debe parsear en local storage los datos de la scool cart seleccionada para darle estilos a los componentes
+de no hacerlo arrojara error
+
+8. view/component/Menu.jsx -> renderiza el menu aqui se debe parsear los lenguajes y el lenguaje seleccionado para guardarlo en localstorage
+9. src/context/LanguageContext.jsx -> aqui se debe guardar el lenguaje seleccionado en el context
+10. src/context/SchelduleContext.jsx -> aqui se guardan los educadores y las escuelas recomiendo guardarlos en localstorage
+en ser/view/educatosAndSchedules/EducatosAndSchedules.jsx linea 52 hay un useEfect que reordena la metadata del calanderia para poder pintarlo asegurando que no se repita ningun educador eso en caso de que la metadata venga parseada de la siguiente manera
+[ {
+        "id": "a7fae89f-c5d2-41c7-a996-99158ea22a6d",
+        "teacher_id": "ef1fbc9d-94de-45a9-8bac-dded8a6551b1",
+        "school_id": "95025c1b-e976-4bb6-96ca-d6e8f770afcb",
+        "language_id": "1bb3804b-a858-4249-873e-57dfa12aa3d6",
+        "category_id": 1,
+        "title": "FEEDBACK",
+        "type": "academy",
+        "weekday": 7,
+        "start_time": "1970-01-01T12:00:00.000Z",
+        "final_hour": "1970-01-01T00:00:00.000Z",
+        "created_at": "2024-02-11T11:30:15.664Z",
+        "state": "A"
+    },
+    {
+        "id": "b0e5e293-0fd8-4e93-ade0-17e86c9acc65",
+        "teacher_id": "ef1fbc9d-94de-45a9-8bac-dded8a6551b1",
+        "school_id": "95025c1b-e976-4bb6-96ca-d6e8f770afcb",
+        "language_id": "1bb3804b-a858-4249-873e-57dfa12aa3d6",
+        "category_id": 1,
+        "title": "IMPULSE LIVE MARKET ANALYSIS",
+        "type": "academy",
+        "weekday": 1,
+        "start_time": "1970-01-01T12:00:00.000Z",
+        "final_hour": "1970-01-01T00:00:00.000Z",
+        "created_at": "2024-02-11T11:30:15.664Z",
+        "state": "A"
+    },
+   ] 
+   el algoritmo se encargara de que no se repita ningun profesor y al mimsmo tiempo creara y reodenara el calendario en Calendario.jsx
+
+   claves del localstorage
+   SetLocalStorageObject('school') -> seta el estilo de la escula color e imagens
+   SetLocalStorageObject('scheldule) -> setea el calendario
+   setStorage('language') -> setea el lenguaje seleccionado
+   setStorage('teacher') -> setea el profesor seleccionado
+   setStorage('prefix) -> para el prefijo del lenguaje 
+
+   esta fueron las clave que se usaron y que recupera a lo largo de la app ojo de cambiar la clave tendra que cambiar todo las clave develop
+   GetLocalStorageObject()
+   getStorage()
+   
+
+
+

@@ -33,11 +33,17 @@ export const LogoContainer = styled.div`
 `
 
 export const LogoScool = styled.img`
+border:solid 1px red;
     width: ${props => props.width || '30%'};
     height: ${props => props.height || '30%'};
     border-radius: ${props => props.borderRadius || '20px'};
     z-index: '50000000';
    
+    @media (max-width: 768px) {
+        width: 180px;
+        height: 100px;
+        border:solid 1px blue;
+    }
 `
 
 export const Comenzar = styled.button`
@@ -83,11 +89,11 @@ export const FoooterContainer = styled.div`
 // estilos Menu
 
 export const MenuContainer = styled.div`
-    background-color: transparent;
+   
     height: 30px;
     width: 100%;
     display: flex;
-  
+    background-color: transparent;
     height: 145px;
     justify-content: space-between;
     align-items: center;
