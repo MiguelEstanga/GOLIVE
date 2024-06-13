@@ -42,7 +42,7 @@ border:solid 1px red;
     @media (max-width: 768px) {
         width: 180px;
         height: 100px;
-        border:solid 1px blue;
+        border:solid 1px red;
     }
 `
 
