@@ -138,7 +138,7 @@ export default function OnlivePage() {
                     </ContainerLike>
                     <ContainerForm
                         btnImg={require(`../../${GetStorageObjet('school')?.bg_pro}`)}
-                        bg={GetStorageObjet('schoolId').cl_text}
+                        bg={GetStorageObjet('school').cl_text}
                     >
                         <input type="text" />
                         <div className="btn-chat" >Send dd</div>
