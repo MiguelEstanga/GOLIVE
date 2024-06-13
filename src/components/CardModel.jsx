@@ -16,7 +16,7 @@ export default function CardModel({
         >
             <div className="img" >
                 <div className="img_">
-                    <img src={require(`../asset/${academia}/linterna.png`) } alt="" />
+                    <img src={require(`../asset/${academia}/linterna.png`) } alt="p" />
                 </div>
                 <h2>
                     1. Smart Money

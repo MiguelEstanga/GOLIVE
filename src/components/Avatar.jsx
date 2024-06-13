@@ -32,7 +32,7 @@ export default function AvatarGlobal({ img, colorBorder  , data , shouData=true 
          <Avatar
             colorBorder={colorBorder}
          >
-        <img width={'100%'} src={img} style={{ borderRadius:'50%' }}  />  
+        <img width={'100%'} src={img} alt="p" style={{ borderRadius:'50%' }}  />  
         </Avatar>   
         {
             shouData === true ? (
