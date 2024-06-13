@@ -1,8 +1,9 @@
 import { useEffect , useState} from "react";
-import { getProfesor } from "../helper/Response";
+import { getProfesor, profesoresTest } from "../helper/Response";
 import styled from "styled-components";
 import { GetStorageObjet, SetStorageObjet } from "../helper/LocalStorage";
 import { useNavigate } from "react-router-dom";
+import { profesor } from "../view/educatorsAndSchedules/http";
 
 export default function AvatarGeneric({ name, avatar, width ,height }) 
 {
@@ -18,38 +19,31 @@ export const Avatar2 = ({id})=>{
 
   const [data , setData] = useState({})
   const navegacion = useNavigate()
-  useEffect(  function(){
 
-    getProfesor(id)
-      .then(res => {
-        setData(res.data.data.user)
-      })
+
+  async function profesor(){
+    const response  = await profesoresTest(id)
+    const profesor = await response.json()
+    setData(profesor.data)
+  }
+   
+
+
+  useEffect(  function(){
+    profesor()
+    console.log('proximos',id)
   } ,[] ) 
    
   return (
       <div
-        onClick={() => {
-          SetStorageObjet('teacher', data)
-          
-          navegacion('/on-live-page')
-        }}
-        style={ 
-
-          {
-            cursor: 'pointer',
-          } 
-        }
-      > 
-                                  
-          <img width={'70px'} 
-            src={data.image}
-           
-            style={{
-                borderRadius: '50%',
-            }} 
+        onClick={() => {navegacion('/on-live-page')}}
+        style={ {cursor: 'pointer',} }
+      >                          
+          <img 
+            width={'70px'} 
+            src={  data?.user?.image ??  require("../user/loading.jpeg")}
+            style={{borderRadius: '50%',}} 
           />
-
-    
       </div>
   )
 }

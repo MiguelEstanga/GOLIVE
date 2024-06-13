@@ -25,16 +25,32 @@ export const Style = {
 
 //inlive container
 export const InLiveContainer = styled.div`
-        margin: '90px 10px';
-        display: 'flex';
-        flexDirection: 'column';
-        padding: '10px';
-        gap: '20px';
-        alignItems: 'center';
-        justifyContent: 'center';
-        width: 'auto';
-        height: 'auto';
-        padding:"50px";
+       
+        display:flex;
+        flex-direction: column;
+        position: relative;
+        align-items: center;
+        gap: 20px;
+     
+        
+      
+        width: 100%;
+        height: 100%;
+  
+
+        @media (max-width:800px) {
+           
+           display:flex;
+           width:98vw;
+           height:150px;
+           flex-direction:row;
+           position:relative;
+           top:50px;
+           gap:10px;
+          
+           justify-content: center;
+           align-items: center;
+        }
 `
 
 export const EducatorsAndSchedulesContainer = styled.div`
@@ -47,20 +63,23 @@ export const EducatorsAndSchedulesContainer = styled.div`
 `
 export const TableClases = styled.div`
     border:solid 1px ${ (props) => props.bgb }; 
-   border-radius: 50px;
+   border-radius: 20px;
    margin-top: 20px;
    background-image: url(${ (props) => props.bimg });
    background-position: center;
+   
    background-size: cover;
     width: 100%;
-
+    padding: 20px;
     @media (max-width:600px) {
-        border:none;
-        padding:0;
-        height: auto;
-        width: 100vw;
-       
-       
+       border-radius: 50px;
+        padding: 10px;
+        margin: auto;
+        gap: 1px;
+        width: 95vw;
+        background:none;
+       background-image: none;
+       border:none;
     }
     
 `
@@ -110,6 +129,7 @@ export const ContainerDias = styled.div`
     .dias_semanas
     {
         width: 70%;
+       
         position: relative;
         left: -100px;
         height: 20px;
@@ -150,6 +170,12 @@ export const ContainerOptions = styled.div`
     background-color: #d0d3d4;
     border-radius: 30px;
     background-image: url(${ (props) => props.bgb });
+
+    @media (max-width:600px) {
+         width: 90%;
+         margin: auto;
+         height: 70px;
+    }
 `   
 
 // para las filtros de la seccion de opciopes
@@ -180,9 +206,23 @@ export const Option = styled.div`
 
     @media (max-width:600px) {
         font-size: 10px;
+        flex-direction: column;
+        
        p{
            font-size: 10px;
            text-align: center;
        }
     }
+`
+
+//container top profesores
+export const ContainerProfesoresTop = styled.div`
+    width: 80%;
+    margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+   
 `

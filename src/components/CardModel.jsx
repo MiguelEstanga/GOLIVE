@@ -15,7 +15,7 @@ export default function CardModel({
             bgFondo={bgFondo}
         >
             <div className="img" >
-                <div>
+                <div className="img_">
                     <img src={require(`../asset/${academia}/linterna.png`) } alt="" />
                 </div>
                 <h2>
@@ -41,6 +41,7 @@ export default function CardModel({
 const Container = styled.div`
     border:solid 2px ${ (props) => props.bgColorFondo  };
     width:400px;
+    height:400px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
     border-radius:10px;
     
@@ -50,17 +51,25 @@ const Container = styled.div`
     background-position: center;
     
     @media (max-width:600px) {
+        border-radius:50px;
         width:380px;
         height:400px;
-        
+        padding:11px;
+        margin-left:20px;
     }
     .btn_{
         margin-top:20px;
     }
     .img{
-       
+        
         height:100px;
         width:100%;
+    }
+    .img_{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        
     }
     .descripcion{
         color:white;
@@ -68,18 +77,27 @@ const Container = styled.div`
         font-family:Montserrat ;
         font-weight:100;
         margin-top:20px;
+        text-align: center;
     }
     h2{
+        text-align: center;
         font-size:30px;
         color:white;
         margin-top:20px;
     }
+        .btn_{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
     .info{
        
         width:100%;
         height:auto;
         margin-top:20px;
-
+        display:flex;
+        justify-content: center;
+        align-items: center;
         .level{
             display:flex;
             gap:10px;

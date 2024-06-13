@@ -12,7 +12,8 @@ import {
         ContainerComentarios,
         ContainerProgresoBar,
         OldComentarios,
-        VideosSection
+        VideosSection,
+        PreguntasYComentarios
     } from "./styled";
 import { GetStorageObjet } from "../../helper/LocalStorage";
 import Footer2d from "../../components/Footer2d";
@@ -21,36 +22,20 @@ import { AiOutlineDislike } from "react-icons/ai";
 import Menu from "../educatorsAndSchedules/components/Menu";
 import { useEffect, useState } from "react";
 import Loading from "../../components/Loading";
-import { SmartMoneyModule, getNextVideo } from "../../helper/Response";
+
 import ReactPlayer from "react-player";
-import axios from "axios";
+
+import {SmartMoneyVideoTest} from "../../metadata/smartMoney";
 function SmartMoney()
 {
     const data = [1,2,3,4,5,6,7]
     
-    const [level , setLevel] = useState(1)
+    const [level , setLevel] = useState(0)
     const [inputFile , setInputFile] = useState('')
     const  [loading , setLoading] = useState(false)
     const [videoSmartMoney , setVideoSmartMoney] = useState([])
-    async function GetVideos()
-    {
-        try{
-            setLoading(true)
-            const response = await SmartMoneyModule()
-            console.log(response.data.data)
-            setVideoSmartMoney(response.data.data)
-            setLevel(response.data.level)
-          
-        }catch(error){
-            console.log(error)
-        }
-        finally{
-            setLoading(false)
-            console.log(videoSmartMoney)
-            console.log('level' , level)
-        }
-       
-    }
+    const [questionsSelected , setQuestionsSelected] = useState(0)
+    const [progreso , setProgreso] = useState(0)
 
     const [comentario , seComnetario] = useState([
         {
@@ -63,39 +48,18 @@ function SmartMoney()
     ])
 
     const handleNext = () => {
-        console.log(level)
-        if(level > videoSmartMoney.length ) {
-            console.log('no hay mas')
-        }else{
-            setLoading(true)
-            getNextVideo('next', `${level}`)
-            .then((res) => {
-                console.log(res.data.level)
-                setLevel(res.data.level)
-            }).catch((err) => {
-                console.log(err)
-            }).finally(() => {
-                setLoading(false)
-            })
-        }
-        
+          
+            if(level < videoSmartMoney.length - 1){
+                setLevel(level + 1)
+            }
+
     }
 
     const handlePrev = () => {
-        if(level === 1) {
-            console.log('no hay mas')
-        }else{
-            setLoading(true)
-            getNextVideo('previous', `${level}`)
-            .then((res) => {
-                console.log(res.data.level)
-                setLevel(res.data.level)
-            }).catch((err) => {
-                console.log(err)
-            }).finally(() => {
-                setLoading(false)
-            })
-        }
+       if(level > 0  ){ 
+            setLevel(level - 1)
+           
+       }
     }
     const handleClik = () => {
         if(inputFile){
@@ -112,33 +76,37 @@ function SmartMoney()
     }
 
     useEffect( () => {
-        GetVideos()
-        console.log('level')
-        console.log((level +1) * videoSmartMoney.length / 100)
-    } , [  level ] ) 
+        setProgreso( level > 0 ? Math.trunc((level/videoSmartMoney.length) * 100) : 0 )
+        if(level === videoSmartMoney.length - 1){
+            setProgreso(100)
+        }
+        setVideoSmartMoney(SmartMoneyVideoTest)
+        
+    } , [ level   ] ) 
     return(
         <SmartMoneyContainer
             bgimg={require(`../../${GetStorageObjet('schoolId').background_full}`)}
         >
              <Menu
-            logo={ GetStorageObjet("schoolId")?.image }
-           />
+                color={ GetStorageObjet("schoolId")?.cl_border}
+                logo={ GetStorageObjet("schoolId")?.image }
+            />
            {loading && <Loading/>}
          
             <SmartMoneyTitle>
-                 <h1>1. Smart Money</h1>
-                 <h2>Modules - Smart Money Concepts</h2>
+                 <h1>{level + 1}. {videoSmartMoney[level]?.description ?? ''}</h1>
+                 <h4>Modules {'->'} Smart Money Concepts</h4>
             </SmartMoneyTitle>
             
             <SmartMoneySection>
                     <VideosSection colorBorder={GetStorageObjet('schoolId').cl_border}>
                         {
-                            videoSmartMoney.length > 0 ? ( 
+                            videoSmartMoney?.length > 0 ? ( 
                                 <ReactPlayer
-                                url={`${videoSmartMoney[level - 1].image}` ??''}
-                                controls
-                                width="95%"
-                                height="95%"
+                                    url={`${videoSmartMoney[level].url}` ??''}
+                                    controls
+                                    width="100%"
+                                    height="100%"
                             />
                             ) :""
                         }
@@ -150,12 +118,12 @@ function SmartMoney()
                          bgimg={require(`../../${GetStorageObjet('schoolId').bg_educ}`)}
                          borderColor = {GetStorageObjet('schoolId').cl_border}
                     >
-                        <h2>My Progress {(level/videoSmartMoney.length) * 100}%</h2>
+                        <h2>My Progress {progreso }%</h2>
                             <p className="lessons-p">{level} de {videoSmartMoney.length} lessons</p>
                             <ContainerProgresoBar
                                 colorContainer={GetStorageObjet('schoolId').cl_backg}
                             >
-                                <Progreso  progreso={(level/videoSmartMoney.length) * 100} colorProgreso={GetStorageObjet('schoolId').color} />
+                                <Progreso  progreso={ progreso } colorProgreso={GetStorageObjet('schoolId').color} />
                             </ContainerProgresoBar>
                           
                             <div className="progress-class">
@@ -167,12 +135,15 @@ function SmartMoney()
                                     <button 
                                         style={{cursor:"pointer"}}
                                         onClick={ () => handlePrev() }
-                                     >PREVIOUS
+                                     >
+                                    {progreso > 0 ? "PREVIOUS" : "START"}
                                     </button>
                                     <button
                                          style={{cursor:"pointer"}}
                                          onClick={ () => handleNext() }
-                                    >NEXT</button>
+                                    >
+                                        {progreso < 100 ? "NEXT" : "FINISH"}
+                                    </button>
 
                                 </div>
                                 <div className="like-dislike">
@@ -199,6 +170,31 @@ function SmartMoney()
                     </ProgressBarContainer>
                    
             </SmartMoneySection>
+            <PreguntasYComentarios
+                colorBorder={GetStorageObjet('schoolId').cl_border ?? "#fff"}
+            >
+                 <div
+                    onClick={() => setQuestionsSelected(1)}
+                    style={
+                        {cursor:"pointer" ,   
+                        borderBottom: questionsSelected ===1 ? `solid 6px ${GetStorageObjet('schoolId').color} ` :"",
+                        color: questionsSelected ===1 ? GetStorageObjet('schoolId').color : "#fff"
+                    }}
+                    className="comments">
+                    COMMENT
+                </div>       
+                <div
+                  onClick={() => setQuestionsSelected(2)}
+                     
+                    style={
+                        {cursor:"pointer" ,   
+                        borderBottom: questionsSelected ===2 ? `solid 6px ${GetStorageObjet('schoolId').color} ` :""
+                            , color: questionsSelected ===2 ? GetStorageObjet('schoolId').color : "#fff"
+                       }}
+                    className="questions">
+                    DOUBTS
+                </div>    
+            </PreguntasYComentarios>
             <ContainerComentarios>
                 <CustomInput
                     type="text"
@@ -212,9 +208,14 @@ function SmartMoney()
                     SEND
                 </BTN>
             </ContainerComentarios>
-            <OldComentarios>
-                 <Comments comments={comentario} />
-            </OldComentarios>
+            {
+                questionsSelected === 1 ? (
+                    <OldComentarios>
+                            <Comments comments={comentario} />
+                    </OldComentarios>
+                ):""
+            }
+           
             
            
           

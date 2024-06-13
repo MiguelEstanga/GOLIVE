@@ -21,13 +21,15 @@ export default function ModelSmartMoney({
 const Container = styled.div`
     padding:10px;
     width: 1600px;
-    height:450px;
+    height:500px;
     margin: 20px auto;
     display: grid;
-   
+    grid-template-columns: repeat( auto-fit, minmax(400px, 1fr) );
+    justify-content: center;
+    align-items: center;
+    
     @media (max-width:600px) {
-        grid-template-columns: repeat(1,1fr);
-        pleace-items: center;
-        
+       width:90vw;
+        justify-content: center;
     }
 `

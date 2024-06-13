@@ -1,46 +1,30 @@
 import { useContext } from "react";
 import { CartContainer, Comenzar, LogoContainer  , LogoScool} from "./Styled";
-import ShouldeContext from "../context/ShouldeContext";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import { schedule } from "../helper/Response";
+import { useNavigate } from "react-router-dom";
 import { GetStorageObjet, SetStorageObjet, getStorage } from "../helper/LocalStorage";
 import lang from "../helper/traduccion";
-
-export default function ScoolCart({color , image , titulo , logo_text , items}) 
+import {schedule}  from "../metadata/schedule";
+import { LanguageContext } from "../context/languageContext";
+import ScheduleContext from "../context/scheduleContext";
+export default function ScoolCart({color , items}) 
 {
-    const { setSchoolId , setShoulde  } = useContext(ShouldeContext);
-
+   
+    const { setSchedule } = useContext(ScheduleContext);
+    const { language } = useContext(LanguageContext);
     const navegation = useNavigate();
 
-    async function  setSchedule(schoolId)
-    {
-        const response = await schedule();
-        try{
-            var school = response.data.data.today
-            console.log(getStorage('lenguaje'))
-            console.log(schoolId)
-            var metadata =  school.filter(data => data.language_id === getStorage('lenguaje') && data.school_id === schoolId)
-            SetStorageObjet('shoulde', metadata)
-            setShoulde(metadata)
-            console.log(metadata)
-        }catch(error){
-          console.log(error);
-        }
-    }
-
     const handleClick = () => {
-        SetStorageObjet('schoolId', items)        
-        setSchedule(GetStorageObjet('schoolId').id )
+        SetStorageObjet('school', items)
+        setSchedule(schedule.filter( profesores => profesores.language_id === language && profesores.school_id === items.id ) )
         navegation("/educators-and-schedules")
     }
 
     return (
        <CartContainer
-        color={color}
-        image={require(`../${items.bacground_img}`)}
+            color={items.color}
+            image={require(`../${items.bacground_img}`)}
        >
             <LogoContainer> 
-               
                 <div style={Style.container}>
                     <LogoScool 
                         width={'100%'}

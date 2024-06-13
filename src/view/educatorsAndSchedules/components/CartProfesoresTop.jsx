@@ -1,48 +1,56 @@
 import { useContext, useEffect , useState } from "react";
 import { Avatar, CartProfesoresTopContainer , TextData } from "./Styled";
-import { getProfesor } from "../../../helper/Response";
+import { getProfesor, profesoresTest, review } from "../../../helper/Response";
 import { useNavigate } from "react-router-dom";
 import { TeacherContext } from "../../../context/TeacherContext";
 import Star from "./Start";
 import { GetStorageObjet, SetStorageObjet } from "../../../helper/LocalStorage";
-export default function CartProfesoresTop( {imagen_cart , color_resena  , colorBorder , avatar , idProfesor})
+
+export default function CartProfesoresTop( {imagen_cart , color_resena  , colorBorder , name , avatar  , data})
 {
-    const [data , setData] = useState([])   
+    
     const navegacion = useNavigate()
-    const {setTeacher} = useContext(TeacherContext)
-    useEffect( () => {
-        getProfesor(idProfesor)
-        .then(
-            res => {
-                setData(res?.data?.data)
-            }
-        )
+    const {setTeacher , teacher} = useContext(TeacherContext)
+    const [profesor , setProfesor] = useState({})
+    //para navegar a la pagina de on-live
+
+    useEffect(  () => {
+        profesoresTest(data.teacherId)
+        .then(res=> res.json())
+        .then(res => {
+            console.log(res.data)
+           setProfesor(res.data)
+         })
     } , [])
+    const navegarOnlnePage = () => {
+        setTeacher(profesor)
+        SetStorageObjet('teacher', profesor)
+        navegacion('/on-live-page')
+    }
     return (
         <CartProfesoresTopContainer
-            imagenCart={imagen_cart}
+            imagenCart={require(`../../../${imagen_cart}`)}
             colorBorder={colorBorder}
         >
-            <Avatar 
-                onClick={() => {
-                    setTeacher(data) 
-                    SetStorageObjet('teacher', data)
-                    navegacion('/on-live-page')
-                    
-                }}
-            colorborder={colorBorder}>
-                <img     width="100%" style={{'border-radius': '50%' }} src={data?.user?.image ?? require(`../../../user/loading.jpeg`) } alt="avatar"/>
+            <Avatar o
+                onClick={() => navegarOnlnePage()  }
+                colorborder={colorBorder}
+            >
+                <img     
+                    width="100%" 
+                    style={{'border-radius': '50%' }} 
+                    src={profesor?.user?.image ?? require('../../../user/loading.jpeg')}
+                    alt="avatar"/>
             </Avatar>
             
-            <div 
-              
-            >
-                <TextData>
-                    {data?.user?.names}
-                </TextData>
+            <div>
+                <TextData>{profesor?.user?.names}</TextData>
                 
                 <div>
-                    <Star numero={5}  color={ `${GetStorageObjet('schoolId').color}` } />
+                    <Star 
+                        numero={5}  
+                        color={ `${GetStorageObjet('schoolId').color}` } 
+                    />
                 </div>
                 <TextData
                     colorTexto={color_resena}

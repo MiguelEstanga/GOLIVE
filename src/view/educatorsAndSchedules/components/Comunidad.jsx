@@ -19,72 +19,76 @@ export default function Comunidad({
     }
     return (
         <Container>
-        
-             <ContainerComunidadEvento>
-                <div style={  Style.evento_text} >
-                    <h2 style={text}> Comunidad </h2>
-                </div>
-                <div style={Style.container_comunidad}>
-
-                    <ContainerComunidad
-                        borderColor={  BorderColor  }
-                        borderRadius={'30px 0 0 30px'}
-                        imagenCart={require(`../../../asset/bg.jpg`)}
-                    >
-
-                         <div style={Style.container_text}>
-                            <h2 style={Style.h2} >
-                                Comunidad
-                            </h2>
-                            <div style={{
-                                display:'flex',
-                                justifyContent: 'center',
-                            }}>
-                                <img width={'130px'} src={require(`../../../${GetStorageObjet("schoolId")?.image ?? ''}`)} alt="img"  />
-                            </div>
-                        </div>
-
-                    </ContainerComunidad>
-
-                    <ContainerComunidad
-                        borderColor={BorderColor}
-                        borderRadius={'0 30px 30px 0'}
-                        imagenCart={require(`../../../${GetStorageObjet("schoolId")?.bg_commun}`) }
-                    >
-                        <div style={Style.container_text_ir}>
-                            <H2>
-                                Qué hay de nuevo 
-                            </H2>
-                            <H2
-                                color={TextColor}
-                            >
-                                en tu comunidad?
-                            </H2>
-                            <Leyenda
-                                color={TextColor}
-                            >
-                                Presentamos el curso de divisas de IM Academy,
-                                diseñado para educar a los estudiantes con el 
-                                conocimiento mas completo y práctico en el mundo del 
-                                comercio de devisas.
-
-                                <a  target="_blank" href="https://im.academy/">
-                                    ir
-                                </a>
-                            </Leyenda>
-                        </div>
-                    </ContainerComunidad>
-
-                </div>
-             </ContainerComunidadEvento>
+            <div className="comunidad">
+            <ContainerComunidadEvento
+               
+               >
+                  <div style={  Style.evento_text} >
+                      <h2 style={text}> Comunidad </h2>
+                  </div>
+                  <div style={Style.container_comunidad}>
+  
+                      <ContainerComunidad
+                          borderColor={  BorderColor  }
+                          borderRadius={'30px 0 0 30px'}
+                          imagenCart={require(`../../../asset/bg.jpg`)}
+                      >
+  
+                           <div style={Style.container_text}>
+                              <h2 style={Style.h2} >
+                                  Comunidad
+                              </h2>
+                              <div style={{
+                                  display:'flex',
+                                  justifyContent: 'center',
+                              }}>
+                                  <img width={'130px'} src={require(`../../../${GetStorageObjet("schoolId")?.image ?? ''}`)} alt="img"  />
+                              </div>
+                          </div>
+  
+                      </ContainerComunidad>
+  
+                      <ContainerComunidad
+                          borderColor={BorderColor}
+                          borderRadius={'0 30px 30px 0'}
+                          imagenCart={require(`../../../${GetStorageObjet("schoolId")?.bg_commun}`) }
+                      >
+                          <div style={Style.container_text_ir}>
+                              <H2>
+                                  Qué hay de nuevo 
+                              </H2>
+                              <H2
+                                  color={TextColor}
+                              >
+                                  en tu comunidad?
+                              </H2>
+                              <Leyenda
+                                  color={TextColor}
+                              >
+                                  Presentamos el curso de divisas de IM Academy,
+                                  diseñado para educar a los estudiantes con el 
+                                  conocimiento mas completo y práctico en el mundo del 
+                                  comercio de devisas.
+  
+                                  <a  target="_blank" href="https://im.academy/">
+                                      ir
+                                  </a>
+                              </Leyenda>
+                          </div>
+                      </ContainerComunidad>
+  
+                  </div>
+               </ContainerComunidadEvento>
+            </div>
+             
              
              <ContainerComunidadEvento>
                 <div style={Style.evento_text} >
-                    <h2  style={text} >Proximas Sesiones</h2>
+                    <div  className="text" >Proximas Sesiones</div>
                     <div className="options">
                         <a
                             href="#options"
-                            style={text}
+                            className="text"
                         >
                             See all <IoIosArrowForward size={12} />
                         </a>
@@ -94,50 +98,58 @@ export default function Comunidad({
                 <div >
 
                     <ContainerComunidad
-                        imagenCart={require(`../../../${GetStorageObjet("schoolId")?.bg_btns}`) }
+                        width='90%'
+                        margin={'auto'}
+                       
                     >
-
-                        <div style={{
-                            width: '100%',
-                            height: '70px',
-                            border:`solid 1px  ${GetStorageObjet("schoolId")?.cl_border}`,
-                            margin:'10px',
-                            borderRadius: '5px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'space-between',
-                            padding:'10px',
-                        }} >
-                            {
+                         {
                                 nextClases?.map( (res , index) => (
-                                   <Avatar2
-                                     key={index}
-                                     id={res.teacher_id}
-                                   />
+                                    <div
+                                        key={index}
+                                        style={{
+                                        
+                                            width: '90%',
+                                            height: '70px',
+                                            border:`solid 1px  ${GetStorageObjet("school")?.cl_border}`,
+                                            margin:'10px',
+                                            borderRadius: '5px',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'space-between',
+                                            padding:'10px',
+                                        }} >
+                                       
+                                       <Avatar2
+                                            key={index}
+                                            id={res.teacherId}
+                                        />
+                                      
+                                       
+                                        <div style={{
+                                            width:'30px',
+                                            height:'30px',
+                                            padding:'10px',
+                                            border:`solid 1px  ${GetStorageObjet("school")?.cl_border}`,
+                                            borderRadius: '50%',
+                                            backgroundColor: `${GetStorageObjet("school")?.color}`,
+                                            display:"flex",
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                        } } >
+                                            
+                                                 <IoIosArrowForward 
+                                                color="#fff"
+                                                 size={12} />
+                                            
+                                           
+                                        </div>
+                                    </div>
+            
+                                 
 
                                 ) )
                             }
                        
-                          
-                           
-                            <div style={{
-                                width:'30px',
-                                height:'30px',
-                                padding:'10px',
-                                border:`solid 1px  ${GetStorageObjet("schoolId")?.cl_border}`,
-                                borderRadius: '50%',
-                                backgroundColor: `${GetStorageObjet("schoolId")?.color}`,
-                                display:"flex",
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                            } } >
-                                <a href="#options" style={{ fontSize:'20px'  }} >
-                                <IoIosArrowForward size={12} />
-                                </a>
-                               
-                            </div>
-                        </div>
-
                     </ContainerComunidad>
 
                    
@@ -152,7 +164,7 @@ export default function Comunidad({
 const Container = styled.div`
     
         gap:20px;
-        width: 80%;
+        max-width:1600px ;
         margin: auto;
         height:  auto;
         display: grid;
@@ -165,6 +177,10 @@ const Container = styled.div`
             pleace-items: center;
             justify-content: center;
             alining-items: center;
+
+            .comunidad{
+                display: none;
+            }
         }
 `
 const Style = {

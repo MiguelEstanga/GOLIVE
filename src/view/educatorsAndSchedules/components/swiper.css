@@ -75,3 +75,35 @@
  
   /* ... other navigation styles */
 }
+
+@media (max-width: 768px) {
+  .swiper-button-next {
+    /* Move button to the right with a margin */
+    right: 10px;
+    
+
+  }
+  
+  .swiper-button-prev {
+    
+    left: 10px;
+    top: 39%;
+    
+  }
+  .swiper-button-next,
+  .swiper-button-prev{
+    background-color:none;
+    padding: 1px;
+    top: 38%;
+  }
+  .swiper-button-prev::after{
+    content: "<";
+    position: absolute;
+    font-size: 10px;
+  }
+  .swiper-button-next::after{
+    content: ">";
+    position: absolute;
+    font-size: 10px;
+  }
+}

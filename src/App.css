@@ -105,12 +105,20 @@
   justify-content: start;
 }
 
+
 .container-welcome{
   padding: 0 0 0  70px;
   width: 90%;
+  justify-content: center;
 
 }
 
+@media (max-width: 768px) {
+    .container-welcome{
+        padding: 0 0 0  0;
+    }
+
+}
 .scuela-titulo-container-logo{
   font-family: var(--fon-family);
   width: 100%;
@@ -135,6 +143,7 @@
   border-radius: 0 0 20px 20px;
   position: relative;
   top: -10px;
+  
 }
 
 .menu-options{
@@ -148,6 +157,24 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
+}
+
+@media (max-width: 768px) {
+    .menu-logo{
+      width: 85px;
+      height: 85px;
+      border-radius: 0 20px 20px 0;
+      position: relative;
+      top: 35px;
+    }
+    
+    .menu-logo img{
+        width: 50px;
+    }
+
+    .menu-options{
+        display: none;
+    }
 }
 .switch {
   display: inline-block;
@@ -328,6 +355,7 @@ select:focus {
     padding-left: 0;
     padding-right: 0;
     padding: 10px;
+    
   }
   .navbar-schedules img { 
     width: 90px;
@@ -336,8 +364,8 @@ select:focus {
 
   .schedules-actions{
     display: flex;
-    gap: 1px;
-    width: 320px;
+    padding: 10px;
+    width: 250px;
     justify-content: center;
     align-items: center;
    
@@ -383,6 +411,22 @@ select:focus {
   gap: 20px;
   font-size: 25px;
   cursor: pointer;
+ 
+}
+
+@media (max-width: 700px) {
+  .schedules-options{
+    display: flex;
+    justify-content: center;
+  
+    align-items: center;
+    gap: 1px;
+    width: 280px;
+    font-size: 14px;
+    cursor: pointer;
+    gap: 4px;
+  }
+  
 }
 
 .smart-money-title{
@@ -520,4 +564,42 @@ select:focus {
 .options a{
   
   text-decoration: none;
+}
+
+.mode_responsive{
+  height: 100%;
+  width: 100px;
+  display: flex;
+  
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 30px;
+}
+.mode_responsive .menu{
+  display: flex;
+  align-items: center;
+  border: solid .5px rgba(255, 255,255,.5);
+  justify-content: space-between;
+  
+  gap: 3px;
+  border-radius: 50px;
+  width: 100px;
+  height: 40px;
+  text-align: center;
+}
+
+.mode_responsive .menu .item-menu{
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+  display: flex ;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .mode_responsive .menu{
+    display: none;
+  }
+  
 }

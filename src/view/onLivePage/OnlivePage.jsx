@@ -1,5 +1,5 @@
 import Menu from "../educatorsAndSchedules/components/Menu";
-import {ContainerForm ,ContainerLike, CardChat, ContainerChat, LiveEducator, Masvisto, Upload,StyledOnlivePage, Title, VIDEOS, OptionVideos } from "./Styled";
+import {ContainerForm ,ContainerLike, CardChat, ContainerChat, LiveEducator, Masvisto, Upload,StyledOnlivePage, Title, VIDEOS, OptionVideos, ModulesLeyenda } from "./Styled";
 import ReactPlayer from 'react-player'
 import {imagenes , foring_exchange} from "../../helper/test";
 import lang from '../../helper/traduccion'
@@ -22,69 +22,23 @@ import { FaUpload } from "react-icons/fa";
 import { Api, endpoints } from "../../helper/Api";
 import axios from "axios";
 import Loading from "../../components/Loading";
-
+import { videoTest } from "../../metadata/vide";
 import AvatarGeneric from "../../components/AvatarGeneric";
-
+import { RxHamburgerMenu } from "react-icons/rx";
+import { BsPeopleFill } from "react-icons/bs";
 export default function OnlivePage() {
     const [alto , setAlto] = useState(250)
     const [show , setShow] = useState(false)
-    const {teacher} = useContext( TeacherContext )
+    //const [teacher , setTeacher] = useState({})
     const [videos , setVideos] = useState([])
     const [form , setForm] = useState({})
     const [videoOption, setVideosOption]  = useState(1)
     const [loading, setLoading] = useState(false)
-    const handleUpload = () => {
-        setLoading(true)
-        const data  = new  FormData()
-      
-        console.log(form.video)
-        console.log(teacher.teacher.teacher_id)
-        console.log(GetStorageObjet('schoolId').id)
-        console.log(getStorage('lenguaje'))
-        console.log('formadata')
-
-        console.log(data)
-        data.append('name', form.video)
-        data.append('teacher_id', teacher.teacher.teacher_id)
-        data.append('school_id', GetStorageObjet('schoolId').id)
-        data.append('language_id', getStorage('lenguaje'))
-
-        axios.post(`${endpoints.subida}`, data , {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
-        })
-        .then((res) => {
-          
-            const uploadProgress = res.data.uploadProgress; // Assuming progress data is in res.data
-            console.log(uploadProgress)
-            console.log(res)
-        })
-        .catch((err) => {
-            console.error('error', err)
-        })
-        .finally(() => {
-            setLoading(false)
-            console.log('Upload finished')
-        })
-       
-
-    }
-
-    async function Videos() {
-        const response =  await getFavoriteVideo(
-             teacher.teacher.teacher_id,
-             GetStorageObjet('schoolId').id,
-             getStorage('lenguaje')
-        )
-        console.log(response.data)
-        setVideos(response.data)
-       
-    }
-
+    const {teacher} = useContext(TeacherContext)
+    const [url , setUrl] = useState('https://lifeontop.s3.amazonaws.com/binary+edge_spanish.mp4')
+    const [like, setLike] = useState(1)
     useEffect(() => {     
-       Videos()
-      
+      setVideos(videoTest)   
     },[loading])
     const handleClick = () => {
         setShow(!show)
@@ -92,44 +46,85 @@ export default function OnlivePage() {
 
     return (
         <StyledOnlivePage
-            imagenDeFondo={GetStorageObjet('schoolId')?.background_full}
-            imagenChat={require(`../../${GetStorageObjet('schoolId')?.bg_btns}`)}
+            imagenDeFondo={GetStorageObjet('school')?.background_full}
+           
         >
             { loading ? <Loading/> : null }
          
             <Menu 
-                logo={GetStorageObjet('schoolId')?.image}
-            />
+                logo={GetStorageObjet('school')?.image}
+                 color={ GetStorageObjet("school")?.cl_text}
+            /> 
+                <ModulesLeyenda>
+                            <div style={ { justifyContent:'flex-end'} } >
+                                 <RxHamburgerMenu  color={GetStorageObjet("school")?.color}  size={15} />  Modules
+                            </div>
+                            <div style={ { justifyContent:'flex-start'} } >
+                                     <BsPeopleFill color={GetStorageObjet("school")?.color}  size={15} /> Community/Events
+                            </div>
+                    </ModulesLeyenda>
             <div  className="container">
-
-                <div className="video" >
-                    <div className="inlive">En linea</div>
-                   {
                     
-                      <ReactPlayer
-                        url="https://lifeontop.s3.amazonaws.com/binary+edge_spanish.mp4"
-                       controls
-                        width="95%"
-                        height="95%"
-                    />
-                     
-                   }
-                   
-                </div>
-                <CardChat imgChat={require(`../../${GetStorageObjet('schoolId')?.bg_btns}`)} >
+                    <div clas="video_container">
+                        <div className="video" >
+                            <div className="inlive">En linea</div>
+                                {
+                                    <ReactPlayer
+                                        url={url}
+                                        controls
+                                        width="100%"
+                                        height="99%"
+                                    />
+                                }
+                        </div>  
+                        <div className="data_teacher">
+                            
+                            <div>
+                                <AvatarGlobal
+                                    img={GetStorageObjet('teacher')?.user?.image}
+                                    data={{
+                                        nombre:GetStorageObjet('teacher')?.user?.names + ' ' + GetStorageObjet('teacher')?.user?.last_names,
+                                        profesion:'Profesor',
+                                        academia:GetStorageObjet('teacher')?.role?.role_name,
+                                    
+                                    }}
+                                />
+
+                            </div>
+                            <div>
+                                <div className="teacher_compartir">
+                                        <FaUserLarge
+                                            color={GetStorageObjet('school')?.color}
+                                            width={30}
+                                        />
+
+                                        0
+                                        <FaShareAlt
+                                            color={GetStorageObjet('school')?.color}
+                                            width={30}
+                                        />
+                                </div>
+                                <Seguir />
+                            </div>
+                        </div>
+                    </div>
+                
+                <CardChat imgChat={require(`../../${GetStorageObjet('school')?.bg_stream_chat}`)} >
                   <div className="body">
                     <Title>STREAM CHAT</Title>
                     <ContainerChat
-                        bgChatUser={GetStorageObjet('schoolId').cl_backg}
+                        bgChatUser={require(`../../${GetStorageObjet('school')?.bg_comment_edu}`)}
+                        text={GetStorageObjet('teacher')?.cl_text}
                     >
                         <div className="chat-comentarios">
                            <AvatarGeneric
+                               avatar={GetStorageObjet('teacher')?.user?.image}
                                 width={'40px'}
                                 height={'40px'}
                            />
                            <div className="comentarios">
                               <p>
-                              ggg
+                                    test1
                               </p>  
                             
                            </div>
@@ -147,52 +142,27 @@ export default function OnlivePage() {
                         </div>
                     </ContainerLike>
                     <ContainerForm
-                        btnImg={require(`../../${GetStorageObjet('schoolId')?.bg_btns}`)}
-                        bg={GetStorageObjet('schoolId').cl_backg}
+                        btnImg={require(`../../${GetStorageObjet('school')?.bg_pro}`)}
+                        bg={GetStorageObjet('schoolId').cl_text}
                     >
                         <input type="text" />
-                        <button>Send</button>
+                        <div className="btn-chat" >Send dd</div>
                     </ContainerForm>
                   </div>
                 </CardChat>
 
             </div> 
 
-            <div className="data_teacher">
-                <div>
-                   <AvatarGlobal
-                    img={`${teacher?.user?.image}`}
-                    data={{
-                        nombre:teacher?.user.names + ' ' + teacher?.user.last_names,
-                        profesion:teacher.role.role_name,
-                        academia:'Ingeniería de Software',
-                      
-                    }}
-                   />
-
-                </div>
-                <div>
-                    <div className="teacher_compartir">
-                            <FaUserLarge
-                                color={GetStorageObjet('schoolId')?.color}
-                                width={30}
-                            />
-
-                            3000
-                            <FaShareAlt
-                                color={GetStorageObjet('schoolId')?.color}
-                                width={30}
-                            />
-                    </div>
-                    <Seguir />
-                </div>
-            </div>
+           
             <Upload>
                 <div className="file">
                     <FaUpload 
-                    style={{cursor:'pointer'}}
-                    onClick={ () => handleUpload() }
-                    size={20} color=" #d68910 " /> <span>Upload file</span>
+                         style={{cursor:'pointer'}}
+                         size={20} color=" #d68910 " 
+                    /> 
+                        <span>
+                            Upload file
+                        </span>
                      <button  
                         className="uploadBtn"
                         onClick={ () => {
@@ -208,7 +178,7 @@ export default function OnlivePage() {
                 </div>
             </Upload>
             <Upload
-                divColor={GetStorageObjet('schoolId').cl_backg}
+                divColor={GetStorageObjet('school').cl_backg}
             >
                 <div className="form_container">
                     <span><FaFileUpload size={20}  color=" #d68910  " /></span>
@@ -234,7 +204,7 @@ export default function OnlivePage() {
                             document.getElementById('fecha').click()
                         } }
                     />
-                    <input id="fecha" type="date" itemScope={true} />
+                    
                     <label>Select Day</label>
                 </div>
                 <div className="borrar">
@@ -243,26 +213,42 @@ export default function OnlivePage() {
             </Upload>      
 
             <OptionVideos>
-                <h2
-                    onClick={() => setVideosOption(1)}
-                    style={{
-                        color: videoOption === 1 ? GetStorageObjet('schoolId').color : '#fff',
+                <div
+                    className="option"
+                    onClick={() =>{ 
+                        setVideosOption(1)
+                        setLike(1)
                     }}
-                >Favorite Videos</h2>
-                <h2
-                     onClick={() => setVideosOption(2)}
+                    style={{
+                        color: videoOption === 1 ? GetStorageObjet('school').color : '#fff',cursor:'pointer',
+                    }}
+                >
+                    Favorite Videos
+                </div>
+                <div
+                    className="option"
+                     onClick={() => {
+                        setVideosOption(2)
+                        setLike(0)
+                    }}
                      style={{
-                         color: videoOption === 2 ? GetStorageObjet('schoolId').color : '#fff',
+                         color: videoOption === 2 ? GetStorageObjet('school').color : '#fff',cursor:'pointer',
                      }}
-                >RECORDED SESSION</h2>
+                >
+                    Recorded Session
+                </div>
             </OptionVideos>
             <Masvisto
+                borderColor={GetStorageObjet('school').cl_border}
                 show={show}
                 alto={`${alto}px`}
-                imgMasvistos={require(`../../${GetStorageObjet('schoolId')?.bg_favorite_video}`)}
+                imgMasvistos={require(`../../${GetStorageObjet('school')?.bg_favorite_video}`)}
             >
                 <h2>
-                    Favorite Videos
+                    {
+                        videoOption === 1 ? 'Favorite Videos' : 'Recorded Session'
+                    }
+                   
                 </h2>
                 <div className="ver_todos" onClick={handleClick}>
                     {
@@ -273,7 +259,35 @@ export default function OnlivePage() {
                  <div className="favorito_seccion">
                     {
                         //si hay videos renderizarlos
-                        videos.length > 0 ? videos.map( (video,index) => (<VIDEOS key={index} ></VIDEOS>  )) : <p>there is no video</p>
+                        like === 1 ?(
+                            videos.filter( data => data.like === 1 ).map((res,index )=> (
+                                <VIDEOS
+                                   onClick={() => setUrl(res.url) }
+                                >
+                                    <ReactPlayer
+                                        url={res.url}
+                                        controls
+                                        width="95%"
+                                        height="95%"
+                                    />
+                                </VIDEOS>
+                            ) )
+                        ) : (
+                            videos.filter( data => data.like === 0 ).map((res,index )=> (
+                                <VIDEOS
+                                    onClick={() => setUrl(res.url) }
+                                >
+                                    <ReactPlayer
+                                        style={{zIndex:0}}
+                                        url={res.url}
+                                        
+                                        width="100%"
+                                        height="99%"
+                                    />
+                                </VIDEOS>
+                            ) )
+                        )
+                        
                     }
                    
                 </div>   
@@ -283,11 +297,18 @@ export default function OnlivePage() {
                     Live Educators Tha May Interest You
                 </h2>
                 <div className="recomendados">
-                     <InLive
-                        borderColor={'#52be80'}
-                        url_avatar={'https://d22yb2tbj8zopv.cloudfront.net/src/user/rvukovic.png'}
-                     />
                     
+                    {
+                        GetStorageObjet('enlinea')?.map( (item,index) => (
+                            <InLive
+                                key={index}
+                                borderColor={'#52be80'}
+                                data={item}
+                             />
+                            
+                        ))
+                    }
+                   
                 </div>
             </LiveEducator>
             <Footer2d 

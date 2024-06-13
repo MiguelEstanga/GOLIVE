@@ -3,16 +3,16 @@ import styled from "styled-components";
 
 function ProgressBar({ data , level }) {
     useEffect   (() => {
-        console.log(level)
+        
     }, [level])
     return (
         <div>
             {data.map((data, index) => (
                 <ProgressBarList key={index}  >
                     <span   className={  index === 0 ? "" :"list"}  
-                        style={{ backgroundColor: (index + 1) === level ? "#fff" : "" }}
+                        style={{ backgroundColor: (index ) === level ? "#fff" : "" }}
                     ></span>
-                    <p>{`${index + 1}. ${data.name}`}</p>
+                    <p>{`${index + 1}. ${data.description}`}</p>
                 
                 </ProgressBarList>
             ))}

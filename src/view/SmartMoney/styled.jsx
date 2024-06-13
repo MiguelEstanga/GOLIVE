@@ -11,7 +11,12 @@ export const SmartMoneyContainer = styled.div`
 export const SmartMoneyTitle = styled.div`
 padding: 50px;
 color: white;
-
+    @media (max-width:600px) {
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 `;
 
 export const SmartMoneySection = styled.div`
@@ -49,7 +54,7 @@ background-image: url(${ props => props.bgimg });
     @media (max-width:600px) {
         width: 350px;
         padding: 20px;
-        height: auto;
+        height: 400px;
     }
     margin-bottom: 40px;
     color: white;
@@ -240,4 +245,41 @@ export const VideosSection = styled.div`
     width: 90%;
     height: 300px;
   }
+`
+
+export const PreguntasYComentarios = styled.div`
+    border-bottom: solid 1px ${ props => props.colorBorder ?? "#fff" };
+    width: 100%;
+    height: 50px;   
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+
+    @media (min-width:600px) {
+       width: 70%;
+       margin: 40px auto;
+    }
+    div{
+    
+         display: flex;
+        justify-content: center;
+        align-items: end;
+        fonsize: 20px;
+     
+      
+    }
+    .comments{
+        width: 50%;
+        height: 100%;
+        border-right: solid 1px ${ props => props.colorBorder ?? "#fff" };
+       color: ${ props => props.colorSelect  ?? "#fff" };
+    }
+    .questions{
+       color: ${ props => props.colorSelect  ?? "#fff" };
+        width: 50%;
+        height: 100%;
+        border-left: solid 1px ${ props => props.colorBorder ??  "#fff" };
+    }
 `

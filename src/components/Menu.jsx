@@ -7,34 +7,36 @@ import { LanguageContext } from "../context/languageContext";
 import { GetStorageObjet, getStorage, setStorage } from "../helper/LocalStorage";
 import Loading from "./Loading";
 import { useNavigate } from "react-router-dom";
+import  { lenguajes}  from  '../metadata/lenguaje'
+
 export default function Menu() {
     const [lenguaje , setLenguaje] = useState(false)
     const [languages , setLanguages] = useState([])
-    const [loading ,setLoading] = useState(true);
+    const [loading ,setLoading] = useState(false);
+    const [selectedmenu , setSelectedmenu] = useState('2D')
     const { setLanguage } = useContext(LanguageContext)
     const navegacion = useNavigate()
+
+
     //setea el lenguaje de la pagina
     function handleChange() {
-        setLenguaje(!lenguaje);
-      
-        getLanguage() .then(res => { 
-                //guarda el lenguaje en el local storage
-            GetStorageObjet('language', res.data.data.languages )
-           
-            setLanguages(res.data.data.languages )
-        })
-        .finally(() => setLoading(false))
-      
-       
+        setLenguaje(!lenguaje);        
     }
 
     //abre la barra donde estan los lenguajes
     const handleChangeLanguage = (idLanguage) => {
         setLanguage(idLanguage)
         setLenguaje(!lenguaje);
-        setStorage('lenguaje', idLanguage)
+       
     }
 
+    useEffect(() => {
+        setLanguages(lenguajes)
+    } , [])
+        
+    const color = {
+        backgroundColor: 'linear-gradient(to right,  #f1c40f ,    #7d6608   )',
+    }
     return (
         <MenuContainer>
             <Containerflex>
@@ -65,19 +67,20 @@ export default function Menu() {
                             {
                                 languages?.map( item => (
                                     <li  
-                                        style={ {backgroundColor: `${ item.id === getStorage('lenguaje')? '#2e86c1' :'' }`  }}
+                                        style={ {backgroundColor: `${ item?.id === getStorage('lenguaje')? '#2e86c1' :'' }`  }}
                                         key={item.id}
                                         onClick={() =>{
-                                             handleChangeLanguage(item.id)
-                                             console.log(item.prefix)
-                                             setStorage('prefix', item.prefix)
+                                             handleChangeLanguage(item?.id)
+                                             console.log(item?.prefix)
+                                             setStorage('prefix', item?.prefix)
+                                             setStorage('lenguaje', item?.id)
                                         }}
                                     >
                                        
                                        
-                                        <a onClick={() => handleChangeLanguage(item.id)}>
+                                        <a onClick={() => handleChangeLanguage(item.id)} >
                                            {
-                                              item.lang_name.toUpperCase()
+                                              item?.lang_name?.toUpperCase() ?? "loading..."
                                            }
                                         </a>
                                     </li>
@@ -90,7 +93,19 @@ export default function Menu() {
                 }
                   
                        
-                    
+               
+                    <div className="mode_responsive">
+                        <div className="menu">
+                            <div className="item-menu" style={ {backgroundImage:selectedmenu === "2D" ? color.backgroundColor :""  } }  >
+                                2D
+                            </div>
+                            <div className="item-menu" style={ {backgroundImage:selectedmenu === "3D" ? color.backgroundColor :""  } }  >
+                                3D
+                            </div>
+                        </div>
+                        
+                    </div>
+                
                   
                <ItemMenuCircular 
                 color="linear-gradient(to right, #fff,   #b3b6b7  )"
@@ -114,6 +129,7 @@ export default function Menu() {
                     </div>
                     
               </ItemMenuCircular>
+              
             </Containerflex>
         </MenuContainer>
     )

@@ -10,6 +10,9 @@ export const MenuContainer = styled.div`
     
     @media (max-width: 700px) {
         width: 100%;
+        
+        height: auto;
+        align-items: end;
         padding: 0;
     }
 `;
@@ -31,7 +34,11 @@ export const CartProfesoresTopContainer = styled.div`
     background-size: cover;
     background-position: center;
     opacity: 0.8;
-
+    
+    @media (max-width:800px) {
+        width: 100px;
+        height: 120px;
+    }
     
 `;
 
@@ -52,6 +59,11 @@ export const Avatar = styled.div`
     top: -66px;
     cursor: pointer;
 
+    @media (max-width:800px) {
+        width: 100px;
+        height: 100px;
+    }
+
 `
 export const AvatarInlive = styled.div`
     border:solid 5px ${ (props) => props.colorborder ?? '#fff'} ;
@@ -71,8 +83,28 @@ export const AvatarInlive = styled.div`
         height: 25px;
         background-color: red ;
     }
-`
 
+    @media (max-width:600px) {
+        width: 60px;
+        height: 60px;
+        top: 0;
+       
+        position: none;
+
+        &:before {
+        content: "";
+        position: absolute;
+        bottom: 5px;
+        right: 0;
+        border-radius: 50%;
+        width: 10px;
+        height: 10px;
+        background-color: red ;
+    }
+    }
+
+`
+//container proximas clases y c
 export const ContainerComunidad = styled.div`
     width: 100%;
     height: ${  (props) => props.height ?? '250px'};
@@ -80,15 +112,18 @@ export const ContainerComunidad = styled.div`
     background-image: url(${(props) => props.imagenCart});
     background-size: cover;
     background-position: center;
-    border-radius:  ${ (props) => props.borderRadius ?? '30px'};
+    border-radius:  ${ (props) => props.borderRadius ?? '10px'};
     display: flex;
     aling-items: center;
     justify-content: center;
-    
+    flex-direction: column;
+    height: auto;
+    background-color: ${ (props) => props.bgColorFondo ?? 'rgba( 23, 32, 42 , 0.5)'};
     @media (max-width:600px) {
         height: auto;
         gap:20px;
-        width: 100%;
+        width: ${ (props) => props.width ?? '100%'};
+        margin:${ (props) => props.margin ?? 'center'};
         margin-top:center;
     }
 `
@@ -98,7 +133,7 @@ export const Leyenda = styled.div`
     flex-direction: column;
     align-items: start;
     justify-content: center;
-    width: 100%;
+    width: 90%;
     text-align: start;
     color: #fff;
     font-size: 12px;
@@ -127,12 +162,23 @@ export const ContainerComunidadEvento = styled.div`
     height: '100%';
     display: 'flex';
     flexDirection: 'column';
-    border-radius: 30px;
+    border-radius: 50px;
     gap:'10px';
     background-image: url(${(props) => props.imagenCart});
     background-size: cover;
     background-position: center;
     
+    .text{
+        color: #fff;
+        font-size: 20px;
+        @media (max-width:600px) {
+            font-size: 12px;
+           
+            margin:33px;
+            text-align: center;
+            
+        }
+    }
     @media (max-width:600px) {
        
         width: 100%;
@@ -140,10 +186,69 @@ export const ContainerComunidadEvento = styled.div`
         height: auto;
     }
 
+    .option{
+       
+    }
+
+    
 `
 
 export const ContainerEvento = styled.div`
     border:'solid 1px '
     width: '100%';
     height: '40px';
+`
+
+export const Schedule = styled.div`
+    border:solid 1px #fff};
+    width: 100%;
+    height: 50px;
+`
+
+export const BarraAcademyProfesional = styled.div`
+   
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:20px;
+    .propfesional{
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 10px;
+        color: #fff;
+        .color_profesional{
+            background-color: ${ prop => prop.colorProfesional};
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+          
+        }
+    }
+    .academy{
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        gap: 10px;
+        color: #fff;
+        .color_academy{
+            background-color: ${ prop => prop.colorAcademy};
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+          
+        }
+    }
+    div{
+      
+        height: 50px;
+        width: 300px;
+    }
+
+    @media (max-width:800px) {
+       
+    }
+        
 `

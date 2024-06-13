@@ -3,11 +3,13 @@ import axios from 'axios';
 
 export async function  escuelas() 
 {
-   const  response = await axios.get(`${Api.defaultUrl}${endpoints.escuelas}`)
+   const  response = await axios.get(`${endpoints.escuelas}`)
+   console.log('escuelas')
+   console.log(response.data)
    return response;
 }
 
-export async function  schedule() 
+export async function  getschedule() 
 {
    
     const  response = await axios.get(`${endpoints.schedule}`)
@@ -15,7 +17,7 @@ export async function  schedule()
 }
 
 export async function  getLanguage()
-{
+{  
     const  response = await axios.get(`${endpoints.language}`)
     return response;
 }
@@ -69,5 +71,11 @@ export async function  getNextVideo(action , level)
     data.append('action', action)
     data.append('level', level)
     const  response = await axios.put(`${endpoints.nexVideo}`, {  action, level })
+    return response;
+}
+
+export async function profesoresTest(teacherId)
+{
+   const response = await fetch(`http://62.171.167.21/node/api/user/${teacherId}`)
     return response;
 }

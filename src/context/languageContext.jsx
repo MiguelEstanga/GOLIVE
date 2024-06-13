@@ -9,6 +9,7 @@ export default function LanguageProvider({children})
     const [language, setLanguage] = useState("1bb3804b-a858-4249-873e-57dfa12aa3d6");
 
     useEffect(() => {
+        console.log(language)
         setStorage('lenguaje', language)
     },[language])
     

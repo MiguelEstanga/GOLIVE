@@ -5,7 +5,8 @@ import { MdOutlineNotifications } from "react-icons/md";
 import { RxExit } from "react-icons/rx";
 import { useNavigate } from "react-router-dom";
 export default function Menu({
-    logo
+    logo,
+    color
 }) {
     const navegacion = useNavigate();
     const id = {
@@ -36,12 +37,45 @@ export default function Menu({
                                 <button className="buttom_academia" >Academia</button>
                             </div>
                             <div className="schedules-options">
-                                <IoHomeOutline
-                                    style={{cursor: "pointer"}}
-                                    onClick={() => navegacion(`/Welcome2d`)}
-                                />
-                                <MdOutlineNotifications />
-                                <RxExit />
+                                <div
+                                    style={{
+                                      
+                                        borderRadius: '50%',
+                                        padding: '10px',
+                                        background:color,
+                                    }}
+                                >
+                                        <IoHomeOutline
+                                            
+                                            style={{cursor: "pointer", color: "#fff"}}
+                                            onClick={() => navegacion(`/Welcome2d`)}
+                                        />
+                                </div>
+                                <div
+                                     style={{
+                                       
+                                        borderRadius: '50%',
+                                        padding: '10px',
+                                        background:color,
+                                    }}
+                                >
+                                    <MdOutlineNotifications 
+                                        style={{cursor: "pointer", color: "#fff"}}
+                                    />
+                                </div>
+                                <div
+                                     style={{
+                                       
+                                        borderRadius: '50%',
+                                        padding: '10px',
+                                        background:color,
+                                    }}
+                                >
+                                    <RxExit
+                                        style={{cursor: "pointer", color: "#fff"}}     
+                                    />
+                                </div>
+                                
                             </div>
                         </div>
                     </>

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Virtual, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -9,6 +9,7 @@ import 'swiper/css/navigation';
 
 import './swiper.css';
 import CartProfesoresTop from './CartProfesoresTop';
+import { GetStorageObjet } from '../../../helper/LocalStorage';
 
 export default function SwiperProfesores({
     profesores,
@@ -43,6 +44,7 @@ export default function SwiperProfesores({
     swiperRef.slideTo(index - 1, 0);
   };
 
+  
   return (
     <>
       <Swiper
@@ -65,11 +67,13 @@ export default function SwiperProfesores({
         {profesores?.map(  (profesor , index) => (
           <SwiperSlide key={profesor.id} virtualIndex={index}>
                 <CartProfesoresTop
-                    imagen_cart={imagen_cart}
+                    imagen_cart={GetStorageObjet('school')?.bg_commun ?? ''}
                     color_resena={ctext}
-                    colorBorder={colorBorder}
-                    avatar={avatar}
-                    idProfesor={profesor.teacher_id}
+                   
+                    colorBorder={GetStorageObjet('school')?.cl_border ?? 'black'}
+                   
+                   
+                    data={profesor}
                 />
           </SwiperSlide>
         ))}

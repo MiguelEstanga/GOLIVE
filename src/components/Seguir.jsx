@@ -22,5 +22,9 @@ const StyledButton = styled.div`
     color: white;
     font-size: 15px;
     font-weight: bold;
+
+    @media(max-width:600px){
+        padding: 10px ;
+    }
   
 `

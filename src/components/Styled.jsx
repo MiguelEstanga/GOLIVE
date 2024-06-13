@@ -69,12 +69,15 @@ export const FoooterContainer = styled.div`
     justify-content: center;
     width: 100%;
     height: 200px;
-   
+  
     img{
         width: 400px;
         height: 130px;
     }
-    
+    @media (max-width: 768px) {
+        width: 98vw;
+        height: 140px;
+    }
 `
 
 // estilos Menu
@@ -89,6 +92,10 @@ export const MenuContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     
+
+    @media (max-width: 768px) {
+       width: 100vw;
+    }    
 `
 
 export const Containerflex = styled.div`
@@ -103,6 +110,12 @@ export const Containerflex = styled.div`
 
     gap: 20px;
 
+    @media (max-width: 768px) {
+        padding-right: 0;
+        padding-left: 0;
+        
+        alining-items: center;
+      }
     & > ul {
         background-color: rgba(0, 0, 0, 0.7); /* Set semi-transparent black background */
         backdrop-filter: blur(10px); /* Apply blur effect */
@@ -163,6 +176,10 @@ export const ItemMenuCircular = styled.div`
     margin: auto 0;
     cursor: pointer;
     background-image: ${ props => props.color || ''};
+
+    @media (max-width: 768px) {
+        display: ${ props => props.displayResponsive || 'none'};
+    }
 `
 
 

@@ -21,6 +21,8 @@ export const t = {
         'Nombre Fichero' : 'Nombre del archivo',
         'SeleccionarDia' : 'Seleccionar día',
         'EducadoresMásVistos': 'Educadores más vistos',
+        'VideosFavoritos': 'Vides Favoritas',
+        'SesionesRecordadas': 'Sesiones Recordadas',
     },
     'EN': {
         'BIENVENIDO': 'WELCOME',
@@ -40,10 +42,12 @@ export const t = {
         'Académica': 'Academic',
         'ViveAhora': 'Live Now',
         'EnLinea': 'On line',
-        'VideosFavoritos': 'Favorite Videos',
+        
         'Nombre Fichero' : 'File name',
         'SeleccionarDia' : 'Select day',
         'EducadoresMásVistos': 'More Visitors',
+        'VideosFavoritos': 'Favorite Videos',
+        'SesionesRecordadas': 'Recorded Sessions',
     },
     'ar': {
         'BIENVENIDO': 'مرحبا',
@@ -77,6 +81,8 @@ export const t = {
         'Nombre Fichero' : 'اسم الملف',
         'SeleccionarDia' : 'اختر اليوم',
         'EducadoresMásVistos': 'معلمين أكثر من عملية تعليم',
+        'Videos Favoritos': 'فيديو المفضلة',
+        'Sesiones Recordadas': 'الجدول التالي',
     },
     'fr':{
         'BIENVENIDO': 'Bienvenue',
@@ -110,6 +116,8 @@ export const t = {
             'Nombre Fichero' : 'Nom du fichier',
             'SeleccionarDia' : 'Sélectionner le jour',
             'EducadoresMásVistos': 'Plus de visiteurs',
+            'Videos Favoritos': 'Vidéos Favoris',
+            'Sesiones Recordadas': 'Sesiones Recordadas',
 
     },
    

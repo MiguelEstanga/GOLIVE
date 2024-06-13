@@ -6,17 +6,19 @@ export const DivContainer = styled.div`
   justify-content: center;
   height: 100vh;
   background-color: black;
-  background-image: url("https://golive.softus.de/assets/assets/images/bg-login-IM.jpg");
+  background-image: url(${require('../../asset/bg.jpg')});
   background-size: cover;
 `;
 
 export const LoginContainer = styled.div`
 position: relative;
-width: 460px;
+max-width: 460px;
 height: 560px;
 border-radius: 40px;
 background-color: #fdfefe;
 padding: 20px;
+
+
 `;
 
 export const ContainerForm = styled.div`
@@ -25,6 +27,8 @@ export const ContainerForm = styled.div`
   height:auto;
   justify-content: center;
   margin-top: 40px;
+
+
    
 ` 
 

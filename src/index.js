@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './App.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { ShouldeProvider } from './context/ShouldeContext';
+import { ScheduleProvider } from './context/scheduleContext';
 import LanguageProvider from './context/languageContext';
 import TeacheProvider from './context/TeacherContext';
 
@@ -12,11 +12,11 @@ root.render(
   <React.StrictMode>
     <LanguageProvider>
       <LanguageProvider>
-        <ShouldeProvider>
+        <ScheduleProvider>
           <TeacheProvider>
             <App />
           </TeacheProvider>
-        </ShouldeProvider>
+        </ScheduleProvider>
       </LanguageProvider>
     </LanguageProvider>
     
