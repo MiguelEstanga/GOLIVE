@@ -41,8 +41,8 @@ export const LogoScool = styled.div`
    
     @media (max-width: 768px) {
         padding:10px;
-        width: 120px;
-        height: 70px;
+        width: 100px;
+        height: 50px;
        
     }
 `

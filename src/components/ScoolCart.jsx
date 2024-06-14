@@ -27,8 +27,8 @@ export default function ScoolCart({color , items})
             <LogoContainer> 
                 <div style={Style.container}>
                     <LogoScool
-                         width={'100%'}
-                         height={'70%'}
+                         width={'100px'}
+                         height={'50px'}
                         
                     >
                         <img width={'100%'} height={'100%'} src={require(`../${items.image}`)} alt="logo" />
